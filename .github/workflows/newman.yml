@@ -1,4 +1,4 @@
-name: Run Newman Tests   # Название workflow (отображается во вкладке Actions)
+name: Run Newman Tests and Publish Report  # Название workflow (отображается во вкладке Actions)
 
 on:
   schedule:
@@ -29,15 +29,15 @@ jobs:
         # Устанавливает Newman и репортёр для HTML-отчёта
 
       - name: Create reports directory
-        run: mkdir -p reports
+        run: mkdir -p docs
         # Создаёт папку reports для сохранения отчёта
 
-      - name: Run Newman tests (with CLI log)
+      - name: Run Newman tests and export report
         run: |
           newman run collections/newOrder.json \
           -e environment/Dev-environment.json \
           -r cli,htmlextra \
-          --reporter-htmlextra-export reports/report.html
+          --reporter-htmlextra-export docs/report.html
         continue-on-error: true
         # Запускает коллекцию:
         # - `collections/createOrder.json` — путь к твоей коллекции
@@ -46,9 +46,17 @@ jobs:
         # - `--reporter-htmlextra-export` — путь, куда сохранить HTML
         # - `continue-on-error: true` — позволяет сохранить отчёт, даже если есть ошибки
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: newman-report
-          path: reports/report.html
-        # Загружает HTML-отчёт как артефакт, чтобы ты мог его скачать
+      - name: 🔍 Debug — list docs folder
+        run: ls -l docs
+
+      - name: Create .nojekyll file
+        run: echo "" > docs/.nojekyll
+
+      - name: Commit docs to main branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin main
+          git add docs/report.html docs/.nojekyll
+          git commit -m "📄 Update report [skip ci]" || echo "No changes to commit"
+          git push origin main
