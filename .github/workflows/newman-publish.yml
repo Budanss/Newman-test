@@ -1,4 +1,4 @@
-name: Run Newman Tests and Publish Report  # Название workflow (отображается во вкладке Actions)
+name: Run Newman Publish Report  # Название workflow (отображается во вкладке Actions)
 
 on:
   schedule:
