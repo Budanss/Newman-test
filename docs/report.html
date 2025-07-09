@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-y: scroll;">
+<head>
+  <meta charset="UTF-8">
+  <title>Newman Summary Report</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+
+<style>
+code.renderMarkdown table, code.renderMarkdown th, code.renderMarkdown td {
+    border: 1px solid black;
+    width: max-content;
+    padding: .75rem;
+}
+
+.theme-dark {
+    --background-color: #222;
+    --bg-card-deck: #444444;
+    --text-color: #ccd2d8;
+    --tab-border: solid 1px #444;
+    --success: #3c9372;
+    --failure: #c24a3f;
+    --warning: #d28c23;
+    --info: #4083b6;
+    --badge-outline: #3c9372;
+    --badge-bg: #cdd3db;
+    --badge-text: #ccd2d9;
+    --failure-row: #c24a3f;
+    --warning-row: #d28c23;
+    --card-bg: #444;
+    --card-footer: #4f5758;
+    --form-input: #ececb5;
+    --hov-text: #d2dae5;
+    --h4-text: #ccd1d9;
+}
+
+.theme-light {
+    --tab-border: solid 1px #fff;
+    --text-color: #000000;
+    --success: #42a745;
+    --failure: #dc3544;
+    --warning: #f4c10b;
+    --info: #49a1b8;
+    --badge-outline: #040411;
+    --badge-bg: #f8f9fa;
+    --badge-text: #fff;
+    --failure-row: #f5c6cb;
+    --warning-row: #ffeeba;
+    --card-bg: #f7f7f7;
+    --hov-text: #fff;
+    --h4-text: #ffffff;
+}
+
+body {
+  padding-top:30px;
+  background-color: var(--background-color)!important;
+  color: var(--text-color);
+}
+
+#execution-data {
+  padding: 10px;
+  border: var(--tab-border);
+  border-top: none;
+}
+
+.nav-tabs {
+  padding-top: 10px;
+  height: 105px;
+  overflow-y: auto;
+}
+
+body.theme-dark .card-header {
+    background-color: #444;
+}
+
+body.theme-light .card-header {
+    background-color: #f7f7f7;
+}
+
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: var(--card-footer);
+}
+
+.card-deck {
+    background-color: var(--bg-card-deck)!important;
+}
+.form-control {
+    background: var(--form-input);
+}
+
+.custom-tab {
+  padding: 10px 15px;
+  margin-right: 0px;
+  height: 47px;
+  width: 69px;
+  text-align: center;
+  border: var(--tab-border);
+  border-bottom: none;
+  cursor:pointer;
+}
+
+body.theme-dark .text-white {
+    color: #ccd2d9!important;
+}
+h4 {
+    color: var(--h4-text);
+}
+
+body.theme-dark h1 {
+    color: #ccd2da;
+}
+
+body.theme-dark .bg-light>td {
+    background: #4f5858!important;
+}
+
+body.theme-dark .hljs {
+    background: #0a0a0ab0!important;
+    color: #8d8787!important;
+}
+
+.bg-info {
+    background-color: var(--info)!important;
+}
+.bg-success {
+    background-color: var(--success)!important;
+}
+
+.alert-success {
+    background-color: var(--success)!important;
+}
+
+.alert-warning {
+    background-color: var(--warning)!important;
+}
+
+.alert-info {
+    background-color: var(--info)!important;
+}
+
+.bg-warning {
+    background-color: var(--warning)!important;
+}
+
+.badge-warning {
+    color: var(--badge-text)!important;
+    background-color: var(--warning)!important;
+}
+
+.table-warning>td {
+    background-color: var(--warning-row);
+}
+
+.alert-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-dark .alert-dark {
+    background-color: #636467!important;
+}
+
+body.theme-dark .text-dark {
+    color: #d1dae4!important;
+}
+
+body.theme-dark .badge-light {
+    color: #212529;
+    background-color: #cdd3db;
+}
+
+body.theme-light .badge-light {
+    color: #212529;
+    background-color: #f8f9fa;
+}
+body.theme-light .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-dark .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+.table-danger>td {
+    background-color: var(--failure-row);
+}
+
+body.theme-dark .table .thead-light th {
+    background-color: #4f5858!important;
+    border-color: #dee2e6!important;
+    color: #ccd2d8!important;
+}
+
+.itPassed {
+  background: var(--success);
+  color: white;
+}
+.itFailed {
+  background: var(--failure);
+  color: white;
+}
+
+.resultsInfoPass {
+  color: var(--success);
+  padding-top: 4px;
+}
+
+.resultsInfoFail {
+  color: var(--failure);
+  padding-top: 4px;
+}
+
+.badge-outline-success {
+  color: var(--success);
+  border: 1px solid var(--success);
+  background-color: transparent;
+}
+
+.badge-outline {
+  color: var(--badge-outline);
+  border: 1px solid var(--badge-outline);
+  background-color: transparent;
+}
+
+.btn-outline-success {
+    color: var(--success)!important;
+    border-color: var(--success)!important;
+}
+
+.backToTop:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: var(--hov-text)!important;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: var(--hov-text)!important;
+}
+
+.btn-outline-secondary {
+  background-color: var(--success)!important;
+  color: var(--hov-text)!important;
+}
+
+body.theme-dark .env-heading {
+    color: #ccd2d9!important;
+}
+
+body, html {
+  height:100%;
+}
+
+.card {
+  overflow:hidden;
+}
+
+body.theme-dark .card-body {
+    background-color: #444;
+}
+
+body.theme-light .card-body {
+    background-color: #f7f7f7;
+}
+
+body.theme-dark .card-body .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-light .card-body .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+.card-body .rotate {
+  z-index: 8;
+  float: right;
+  height: 100%;
+}
+
+.card-body .rotate i {
+  color: #14141426;
+  position: absolute;
+  left: 0;
+  left: auto;
+  right: -10px;
+  bottom: 0;
+  display: block;
+  -webkit-transform: rotate(-44deg);
+  -moz-transform: rotate(-44deg);
+  -o-transform: rotate(-44deg);
+  -ms-transform: rotate(-44deg);
+  transform: rotate(-44deg);
+}
+
+.dyn-height {
+  max-height:350px;
+  overflow-y:auto;
+}
+
+.nav-pills .nav-link.active {
+  background-color: transparent!important;
+}
+
+.backToTop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 99;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+
+.single-line-tabs {
+  padding-top: 10px;
+  height: 60px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #4083b6;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4083b6;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+table.dataTable td, table.dataTable tr {
+    vertical-align: middle;
+}
+
+body.theme-dark code {
+    color: #ccd2d8!important;
+}
+
+body.theme-light code {
+    color: #000000!important;
+}
+
+.text-wrap {
+    word-wrap: break-word; 
+    min-width: 600px; 
+    max-width: 600px; 
+    white-space: normal;
+}
+
+</style>
+</head>
+<body class="theme-dark">
+<script>
+    function setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+        document.body.className = themeName;
+    }
+
+    function toggleTheme() {
+        if (localStorage.getItem('theme') === 'theme-light') {
+            setTheme('theme-dark');
+        } else {
+            setTheme('theme-light');
+        }
+    }
+</script>
+  <div class="container">
+        <div class="container">
+            <label>Light</label>
+            <label id="switch" class="switch">
+                <input type="checkbox" onchange="toggleTheme()" id="slider">
+                <span class="slider round"></span>
+            </label>
+            <label>Dark</label>
+        </div>
+        <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+            <li class="nav-item bg-info active" data-toggle="tooltip" title="Click to view the Summary">
+                <a class="nav-link text-white" id="pills-summary-tab" data-toggle="pill" href="#pills-summary" role="tab" aria-controls="pills-summary" aria-selected="true">Summary</a>
+            </li>
+            <li class="nav-item bg-success" data-toggle="tooltip" title="Click to view the Requests">
+                <a class="nav-link text-white" id="pills-requests-tab" data-toggle="pill" href="#pills-requests" role="tab" aria-controls="pills-requests" aria-selected="false">Total Requests <span class="badge badge-light">4</span></a>
+            </li>
+            <li class="nav-item bg-danger" data-toggle="tooltip" title="Click to view the Failed Tests">
+                <a class="nav-link text-white" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed Tests <span class="badge badge-light">0</span></a>
+            </li>
+            <li class="nav-item bg-warning" data-toggle="tooltip" title="Click to view the Skipped Tests">
+                <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">0</span></a>
+            </li>
+            </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab">
+<div class="row">
+  <div class="col-md-9 col-lg-12 main">
+   <h1 class="display-2 text-center">Newman Run Dashboard</h1>
+   <h5 class="text-center">Wednesday, 09 July 2025 09:34:14</h5>
+   <div class="row">
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-success">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-retweet fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Iterations</h6>
+       <h1 class="display-1">1</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-danger">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-list fa-4x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Assertions</h6>
+       <h1 class="display-1">8</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-info">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-plus-circle fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Failed Tests</h6>
+       <h1 class="display-1">0</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-warning">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-share fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Skipped Tests</h6>
+       <h1 class="display-1">0</h1>
+      </div>
+     </div>
+    </div>
+   </div>
+   <hr>
+    <div class="row">
+    <div class="col">
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">File Information</h5>
+                <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> Создание заказа<br>
+                
+                <span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> Dev<br>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">Collection Description</h5>
+                <div class="dyn-height">
+                    <code class="renderMarkdown">Коллекция предназначена для автоматизации процесса &quot;Создание заказа&quot;.
+
+Она включает в себя последовательность из нескольких запросов:
+
+1\. Авторизация пользователя
+
+2\. Получение списка товаров
+
+3\. Создание заказа
+
+4\. Резервирование товаров по заказу
+
+Переменные, используемые в коллекции:
+
+- &lt;u&gt;&lt;i&gt;userEmail, userPassword &lt;/i&gt;&lt;/u&gt; — учетные данные пользователя
+    
+- &lt;u&gt;&lt;i&gt;bearerToken&lt;/i&gt;&lt;/u&gt; — токен после авторизации
+    
+- &lt;u&gt;&lt;i&gt;orderItems&lt;/i&gt;&lt;/u&gt; — выбранные товары
+    
+- &lt;u&gt;&lt;i&gt;orderNumber, orderId &lt;/i&gt;&lt;/u&gt; — номер и ID созданного заказа</code>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">Timings and Data</h5>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Total run duration:</strong> 2.4s<br>
+                <span><i class="fas fa-database"></i></span><strong> Total data received:</strong> 29.87KB<br>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Average response time:</strong> 579ms<br>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-inverse">
+                    <tr class="text-center">
+                        <th class="text-uppercase">Summary Item</th>
+                        <th class="text-uppercase">Total</th>
+                        <th class="text-uppercase">Failed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Requests</td>
+                        <td class="text-center">4</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr>
+                        <td>Prerequest Scripts</td>
+                        <td class="text-center">5</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr>
+                        <td>Test Scripts</td>
+                        <td class="text-center">8</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr class="">
+                        <td>Assertions</td>
+                        <td class="text-center">8</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr class="">
+                        <td>Skipped Tests</td>
+                        <td class="text-center">0</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    <hr>
+   </div>
+   </div>
+  </div>
+ </div>
+        </div>
+            <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
+                <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
+
+                <div class="alert alert-success text-uppercase text-center">
+                     <br><br><h1 class="text-center">There are no failed tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
+                <button id="topOfSkippedScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
+
+                <div class="alert alert-success text-uppercase text-center">
+                    <br><br><h1 class="text-center">There are no skipped tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
+
+            <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
+
+            <div class="btn-group float-right" role="group" aria-label="Button Group">
+                <button id="openAll" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Folders</button>
+                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Requests</button>
+            </div>
+
+    <div class="text-uppercase" id="execution-menu">
+        <h5>1 Iteration available to view</h5>
+        
+        <nav class="table-responsive">
+        <ul class="nav single-line-tabs" id="iterationList">
+        </ul>
+        </nav>
+    </div>
+    <h6 class="text-uppercase text-muted" id="iterationSelected" style="padding-top: 10px;"></h6>
+	<div class="tab-content" id="execution-data">
+            <div id="folder-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7" class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7" aria-expanded="false" aria-controls="collapse" id="requests-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7" class="collapsed text-white z-block">
+                    Iteration: 1 - Авторизация пользователя <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
+                </a>
+                    </div>
+                    <div id="collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7" class="collapse" aria-labelledby="requests-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code class="renderMarkdown">### Описание API: Аутентификация пользователя
+        
+        Данный конечный пункт API предназначен для аутентификации пользователя с использованием его учетных данных. Запрос отправляется методом POST на адрес &#x60;https://sklad.testerhub.ru/wms/v1/auth/login&#x60; и требует предоставления email и пароля пользователя.
+        
+        #### Входные параметры
+        
+        Тело запроса должно содержать следующие параметры в формате JSON:
+        
+        - **email** (строка): Адрес электронной почты пользователя, используемый для входа в систему.
+            
+        - **password** (строка): Пароль пользователя, соответствующий указанному адресу электронной почты.
+            
+        
+        Пример тела запроса:
+        
+        &#x60;&#x60;&#x60; json
+        {
+          &quot;email&quot;: &quot;string&quot;,
+          &quot;password&quot;: &quot;string&quot;
+        }
+        
+         &#x60;&#x60;&#x60;
+        
+        #### Структура ответа
+        
+        При успешной аутентификации сервер возвращает ответ с кодом состояния 200 и следующей структурой:
+        
+        &#x60;&#x60;&#x60; json
+        {
+          &quot;message&quot;: &quot;string&quot;,
+          &quot;token&quot;: &quot;string&quot;,
+          &quot;user&quot;: {
+            &quot;id&quot;: &quot;string&quot;,
+            &quot;username&quot;: &quot;string&quot;,
+            &quot;email&quot;: &quot;string&quot;,
+            &quot;role&quot;: &quot;string&quot;
+          }
+        }
+        
+         &#x60;&#x60;&#x60;
+        
+        - **message** (строка): Сообщение от сервера, может быть пустым.
+            
+        - **token** (строка): Токен аутентификации, который следует использовать для последующих запросов к защищенным конечным пунктам.
+            
+        - **user** (объект): Объект, содержащий информацию о пользователе:
+            
+            - **id** (строка): Уникальный идентификатор пользователя.
+                
+            - **username** (строка): Имя пользователя.
+                
+            - **email** (строка): Адрес электронной почты пользователя.
+                
+            - **role** (строка): Роль пользователя в системе.
+                
+        
+        Эта информация может быть использована для дальнейшего взаимодействия с другими конечными пунктами API, которые могут возвращать аналогичные структуры данных.</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> POST</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://sklad.testerhub.ru/wms/v1/auth/login" target="_blank">https://sklad.testerhub.ru/wms/v1/auth/login</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 1488ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 388B</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Headers</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                            <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-nowrap">Content-Type</td>
+                                                        <td class="text-wrap">application/json</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept</td>
+                                                        <td class="text-wrap">application/json</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">x-mock-response-name</td>
+                                                        <td class="text-wrap">OK</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">x-mock-response-code</td>
+                                                        <td class="text-wrap">401</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">User-Agent</td>
+                                                        <td class="text-wrap">PostmanRuntime/7.39.1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Cache-Control</td>
+                                                        <td class="text-wrap">no-cache</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Postman-Token</td>
+                                                        <td class="text-wrap">5f09daed-4174-4ee1-81ea-7713cf25bddf</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Host</td>
+                                                        <td class="text-wrap">sklad.testerhub.ru</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept-Encoding</td>
+                                                        <td class="text-wrap">gzip, deflate, br</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Connection</td>
+                                                        <td class="text-wrap">keep-alive</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Content-Length</td>
+                                                        <td class="text-wrap">60</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                        <div class="dyn-height">
+                                            <pre><code id="copyReqText-0" class="prettyPrint">{
+          &quot;email&quot;: &quot;qwerty@mail.ru&quot;,
+          &quot;password&quot;: &quot;qwerty12345&quot;
+        }</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-0">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">Server</td>
+                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Date</td>
+                                                    <td class="text-wrap">Wed, 09 Jul 2025 09:34:13 GMT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Type</td>
+                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Length</td>
+                                                    <td class="text-wrap">388</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Connection</td>
+                                                    <td class="text-wrap">keep-alive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">X-Powered-By</td>
+                                                    <td class="text-wrap">Express</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">ETag</td>
+                                                    <td class="text-wrap">W/&quot;184-s42lBLP4yptKcdfKkU2VcQnGDqU&quot;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-54a4aa0f-7254-40fe-936c-fc4ca5a052ae" class="prettyPrint">{&quot;message&quot;:&quot;Авторизация успешна&quot;,&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NTIwNTM2NTMsImV4cCI6MTc1MjE0MDA1M30.ma3hWGYHZ18r7z6sOdpVHASxl0RP_jbT1RGFHeTED_o&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;680caa170a44bf689b95078f&quot;,&quot;username&quot;:&quot;Sergey&quot;,&quot;email&quot;:&quot;qwerty@mail.ru&quot;,&quot;role&quot;:&quot;worker&quot;}}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-54a4aa0f-7254-40fe-936c-fc4ca5a052ae">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="datatable table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr >
+                                                    <td >Response status code is 200</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr >
+                                                    <td >Response contains required fields</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr >
+                                                    <td >Response contains valid user object fields</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr >
+                                                    <td >Token is a non-empty string</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr >
+                                                    <td >Email must be in a valid format</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">5</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="row d-none">
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="card-deck">
+                                        <div class="card border-danger" style="width: 50rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div id="folder-6a267f70-5503-443c-b634-162fc9a17939" class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-6a267f70-5503-443c-b634-162fc9a17939" aria-expanded="false" aria-controls="collapse" id="requests-6a267f70-5503-443c-b634-162fc9a17939" class="collapsed text-white z-block">
+                    Iteration: 1 - Получить список товаров <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
+                </a>
+                    </div>
+                    <div id="collapse-6a267f70-5503-443c-b634-162fc9a17939" class="collapse" aria-labelledby="requests-6a267f70-5503-443c-b634-162fc9a17939">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code class="renderMarkdown">### Получение списка товаров
+        
+        Этот запрос возвращает список всех товаров, доступных в системе. Вы можете использовать параметры фильтрации, чтобы ограничить результаты по категории или наличию на складе.
+        
+        #### Параметры запроса
+        
+        - **Нет обязательных параметров запроса.**
+            
+        
+        #### Ожидаемый ответ
+        
+        - **Статус:** &#x60;200 OK&#x60;
+            
+        - **Content-Type:** &#x60;application/json&#x60;
+            
+        - **Тело ответа:** Массив объектов, каждый из которых содержит следующую информацию о товаре:
+            
+            - &#x60;_id&#x60;: уникальный идентификатор товара
+                
+            - &#x60;sku&#x60;: артикул товара
+                
+            - &#x60;productId&#x60;: идентификатор продукта
+                
+            - &#x60;name&#x60;: название товара
+                
+            - &#x60;barcode&#x60;: штрих-код товара
+                
+            - &#x60;category&#x60;: категория товара
+                
+            - &#x60;dimensions&#x60;: объект, содержащий размеры товара:
+                
+                - &#x60;length&#x60;: длина
+                    
+                - &#x60;width&#x60;: ширина
+                    
+                - &#x60;height&#x60;: высота
+                    
+                - &#x60;weight&#x60;: вес
+                    
+            - &#x60;createdAt&#x60;: дата создания записи
+                
+            - &#x60;updatedAt&#x60;: дата последнего обновления записи
+                
+        
+        #### Примечания
+        
+        - Ответ может содержать несколько объектов товара, каждый из которых соответствует критериям поиска.
+            
+        - Убедитесь, что вы обрабатываете возможные ошибки, которые могут возникнуть при выполнении запроса.</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> GET</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://sklad.testerhub.ru/wms/v1/products" target="_blank">https://sklad.testerhub.ru/wms/v1/products</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 406ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 27.83KB</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Headers</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                            <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept</td>
+                                                        <td class="text-wrap">application/json</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">x-mock-response-code</td>
+                                                        <td class="text-wrap"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Authorization</td>
+                                                        <td class="text-wrap">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NTIwNTM2NTMsImV4cCI6MTc1MjE0MDA1M30.ma3hWGYHZ18r7z6sOdpVHASxl0RP_jbT1RGFHeTED_o</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">User-Agent</td>
+                                                        <td class="text-wrap">PostmanRuntime/7.39.1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Cache-Control</td>
+                                                        <td class="text-wrap">no-cache</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Postman-Token</td>
+                                                        <td class="text-wrap">60c84aab-cdc5-4861-924f-75751fc4cf76</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Host</td>
+                                                        <td class="text-wrap">sklad.testerhub.ru</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept-Encoding</td>
+                                                        <td class="text-wrap">gzip, deflate, br</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Connection</td>
+                                                        <td class="text-wrap">keep-alive</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">Server</td>
+                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Date</td>
+                                                    <td class="text-wrap">Wed, 09 Jul 2025 09:34:13 GMT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Type</td>
+                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Length</td>
+                                                    <td class="text-wrap">28494</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Connection</td>
+                                                    <td class="text-wrap">keep-alive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">X-Powered-By</td>
+                                                    <td class="text-wrap">Express</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">ETag</td>
+                                                    <td class="text-wrap">W/&quot;6f4e-EXQq7lPAMkCdFOzovAf8m4OGzUs&quot;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-0f9234d2-3331-4f1d-82fe-b3d136860138" class="prettyPrint">[{&quot;_id&quot;:&quot;67fbba5e3b68860e539c02e3&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;productId&quot;:&quot;PROD-1744550494284-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744550494284-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T13:21:34.949Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T13:21:34.949Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbba5f3b68860e539c02e6&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;productId&quot;:&quot;PROD-1744550494284-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744550494284-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T13:21:35.074Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T13:21:35.074Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbd6593b68860e539c0329&quot;,&quot;sku&quot;:&quot;SKU-1744557657004-1&quot;,&quot;productId&quot;:&quot;PROD-1744557657004-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744557657004-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T15:20:57.458Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T15:20:57.459Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbd6593b68860e539c032c&quot;,&quot;sku&quot;:&quot;SKU-1744557657004-2&quot;,&quot;productId&quot;:&quot;PROD-1744557657004-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744557657004-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T15:20:57.615Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T15:20:57.615Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe2643b68860e539c0379&quot;,&quot;sku&quot;:&quot;SKU-1744560740340-1&quot;,&quot;productId&quot;:&quot;PROD-1744560740340-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744560740340-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:12:20.741Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:12:20.741Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe2643b68860e539c037c&quot;,&quot;sku&quot;:&quot;SKU-1744560740340-2&quot;,&quot;productId&quot;:&quot;PROD-1744560740340-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744560740340-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:12:20.891Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:12:20.891Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe3df3b68860e539c03cb&quot;,&quot;sku&quot;:&quot;SKU-1744561118722-1&quot;,&quot;productId&quot;:&quot;PROD-1744561118722-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744561118722-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:18:39.147Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:18:39.147Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe3df3b68860e539c03ce&quot;,&quot;sku&quot;:&quot;SKU-1744561118722-2&quot;,&quot;productId&quot;:&quot;PROD-1744561118722-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744561118722-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:18:39.308Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:18:39.308Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe66b3b68860e539c0423&quot;,&quot;sku&quot;:&quot;SKU-1744561771042-1&quot;,&quot;productId&quot;:&quot;PROD-1744561771042-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744561771042-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:31.441Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:31.441Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe66b3b68860e539c0426&quot;,&quot;sku&quot;:&quot;SKU-1744561771042-2&quot;,&quot;productId&quot;:&quot;PROD-1744561771042-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744561771042-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:31.590Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:31.590Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe6813b68860e539c0487&quot;,&quot;sku&quot;:&quot;SKU-001&quot;,&quot;productId&quot;:&quot;PROD-001&quot;,&quot;name&quot;:&quot;Тестовый товар 1&quot;,&quot;barcode&quot;:&quot;BARCODE-001&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:53.259Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:53.260Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe6813b68860e539c048a&quot;,&quot;sku&quot;:&quot;SKU-002&quot;,&quot;productId&quot;:&quot;PROD-002&quot;,&quot;name&quot;:&quot;Тестовый товар 2&quot;,&quot;barcode&quot;:&quot;BARCODE-002&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:53.265Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:53.265Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe7173b68860e539c04b0&quot;,&quot;sku&quot;:&quot;SKU-1744561942891-1&quot;,&quot;productId&quot;:&quot;PROD-1744561942891-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744561942891-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:32:23.291Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:32:23.291Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe7173b68860e539c04b3&quot;,&quot;sku&quot;:&quot;SKU-1744561942891-2&quot;,&quot;productId&quot;:&quot;PROD-1744561942891-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744561942891-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:32:23.441Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:32:23.441Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbf8ea3b68860e539c052e&quot;,&quot;sku&quot;:&quot;SKU-1744566506160-1&quot;,&quot;productId&quot;:&quot;PROD-1744566506160-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744566506160-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T17:48:26.626Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T17:48:26.626Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbf8ea3b68860e539c0531&quot;,&quot;sku&quot;:&quot;SKU-1744566506160-2&quot;,&quot;productId&quot;:&quot;PROD-1744566506160-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744566506160-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T17:48:26.805Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T17:48:26.805Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc007b3b68860e539c05b2&quot;,&quot;sku&quot;:&quot;SKU-1744568442943-1&quot;,&quot;productId&quot;:&quot;PROD-1744568442943-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744568442943-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:20:43.358Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:20:43.358Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc007b3b68860e539c05b5&quot;,&quot;sku&quot;:&quot;SKU-1744568442943-2&quot;,&quot;productId&quot;:&quot;PROD-1744568442943-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744568442943-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:20:43.510Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:20:43.511Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc031e3b68860e539c0622&quot;,&quot;sku&quot;:&quot;SKU-1744569118255-1&quot;,&quot;productId&quot;:&quot;PROD-1744569118255-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744569118255-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:31:58.840Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:31:58.840Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc031f3b68860e539c0625&quot;,&quot;sku&quot;:&quot;SKU-1744569118255-2&quot;,&quot;productId&quot;:&quot;PROD-1744569118255-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744569118255-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:31:59.066Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:31:59.066Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc04493b68860e539c06a5&quot;,&quot;sku&quot;:&quot;SKU-1744569416922-1&quot;,&quot;productId&quot;:&quot;PROD-1744569416922-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744569416922-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:36:57.489Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:36:57.489Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc04493b68860e539c06a8&quot;,&quot;sku&quot;:&quot;SKU-1744569416922-2&quot;,&quot;productId&quot;:&quot;PROD-1744569416922-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744569416922-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:36:57.705Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:36:57.705Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc0f3a3b68860e539c072e&quot;,&quot;sku&quot;:&quot;SKU-1744572217782-1&quot;,&quot;productId&quot;:&quot;PROD-1744572217782-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744572217782-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:23:38.255Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:23:38.255Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc0f3a3b68860e539c0731&quot;,&quot;sku&quot;:&quot;SKU-1744572217782-2&quot;,&quot;productId&quot;:&quot;PROD-1744572217782-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744572217782-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:23:38.426Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:23:38.426Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc17b93b68860e539c07bd&quot;,&quot;sku&quot;:&quot;SKU-1744574392775-1&quot;,&quot;productId&quot;:&quot;PROD-1744574392775-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744574392775-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:59:53.224Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:59:53.224Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc17b93b68860e539c07c0&quot;,&quot;sku&quot;:&quot;SKU-1744574392775-2&quot;,&quot;productId&quot;:&quot;PROD-1744574392775-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744574392775-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:59:53.394Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:59:53.394Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc1d0e3b68860e539c085f&quot;,&quot;sku&quot;:&quot;SKU-1744575757616-1&quot;,&quot;productId&quot;:&quot;PROD-1744575757616-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744575757616-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:22:38.071Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:22:38.071Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc1d0e3b68860e539c0862&quot;,&quot;sku&quot;:&quot;SKU-1744575757616-2&quot;,&quot;productId&quot;:&quot;PROD-1744575757616-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744575757616-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:22:38.243Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:22:38.243Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc25913b68860e539c08ed&quot;,&quot;sku&quot;:&quot;SKU-1744577936906-1&quot;,&quot;productId&quot;:&quot;PROD-1744577936906-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744577936906-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:58:57.327Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:58:57.327Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc25913b68860e539c08f0&quot;,&quot;sku&quot;:&quot;SKU-1744577936906-2&quot;,&quot;productId&quot;:&quot;PROD-1744577936906-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744577936906-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:58:57.486Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:58:57.486Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fcaf4c3b68860e539c0981&quot;,&quot;sku&quot;:&quot;SKU-1744613196463-1&quot;,&quot;productId&quot;:&quot;PROD-1744613196463-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744613196463-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-14T06:46:36.947Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-14T06:46:36.947Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fcaf4d3b68860e539c0984&quot;,&quot;sku&quot;:&quot;SKU-1744613196463-2&quot;,&quot;productId&quot;:&quot;PROD-1744613196463-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744613196463-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-14T06:46:37.124Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-14T06:46:37.124Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fdbd7a3b68860e539c0a28&quot;,&quot;sku&quot;:&quot;SKU-1744682362324-1&quot;,&quot;productId&quot;:&quot;PROD-1744682362324-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744682362324-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-15T01:59:22.923Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-15T01:59:22.923Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fdbd7b3b68860e539c0a2b&quot;,&quot;sku&quot;:&quot;SKU-1744682362324-2&quot;,&quot;productId&quot;:&quot;PROD-1744682362324-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744682362324-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-15T01:59:23.148Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-15T01:59:23.148Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67ff0ee13b68860e539c0ac8&quot;,&quot;sku&quot;:&quot;SKU-1744768736631-1&quot;,&quot;productId&quot;:&quot;PROD-1744768736631-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744768736631-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-16T01:58:57.054Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-16T01:58:57.054Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67ff0ee13b68860e539c0acb&quot;,&quot;sku&quot;:&quot;SKU-1744768736631-2&quot;,&quot;productId&quot;:&quot;PROD-1744768736631-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744768736631-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-16T01:58:57.210Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-16T01:58:57.210Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68005ff63b68860e539c0b6e&quot;,&quot;sku&quot;:&quot;SKU-1744855029739-1&quot;,&quot;productId&quot;:&quot;PROD-1744855029739-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744855029739-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-17T01:57:10.196Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-17T01:57:10.196Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68005ff63b68860e539c0b71&quot;,&quot;sku&quot;:&quot;SKU-1744855029739-2&quot;,&quot;productId&quot;:&quot;PROD-1744855029739-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744855029739-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-17T01:57:10.368Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-17T01:57:10.368Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6801b0d13b68860e539c0c1a&quot;,&quot;sku&quot;:&quot;SKU-1744941264919-1&quot;,&quot;productId&quot;:&quot;PROD-1744941264919-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744941264919-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-18T01:54:25.509Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-18T01:54:25.509Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6801b0d13b68860e539c0c1d&quot;,&quot;sku&quot;:&quot;SKU-1744941264919-2&quot;,&quot;productId&quot;:&quot;PROD-1744941264919-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744941264919-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-18T01:54:25.735Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-18T01:54:25.735Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680301ea3b68860e539c0ccc&quot;,&quot;sku&quot;:&quot;SKU-1745027561884-1&quot;,&quot;productId&quot;:&quot;PROD-1745027561884-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745027561884-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-19T01:52:42.335Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-19T01:52:42.335Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680301ea3b68860e539c0ccf&quot;,&quot;sku&quot;:&quot;SKU-1745027561884-2&quot;,&quot;productId&quot;:&quot;PROD-1745027561884-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745027561884-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-19T01:52:42.486Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-19T01:52:42.486Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6804561f3b68860e539c0d84&quot;,&quot;sku&quot;:&quot;SKU-1745114655253-1&quot;,&quot;productId&quot;:&quot;PROD-1745114655253-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745114655253-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-20T02:04:15.832Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-20T02:04:15.832Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680456203b68860e539c0d87&quot;,&quot;sku&quot;:&quot;SKU-1745114655253-2&quot;,&quot;productId&quot;:&quot;PROD-1745114655253-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745114655253-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-20T02:04:16.059Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-20T02:04:16.059Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6805a7613b68860e539c0e43&quot;,&quot;sku&quot;:&quot;SKU-1745200993324-1&quot;,&quot;productId&quot;:&quot;PROD-1745200993324-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745200993324-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-21T02:03:13.911Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-21T02:03:13.911Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6805a7623b68860e539c0e46&quot;,&quot;sku&quot;:&quot;SKU-1745200993324-2&quot;,&quot;productId&quot;:&quot;PROD-1745200993324-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745200993324-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-21T02:03:14.131Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-21T02:03:14.131Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6806f7b03b68860e539c0f36&quot;,&quot;sku&quot;:&quot;SKU-1745287087736-1&quot;,&quot;productId&quot;:&quot;PROD-1745287087736-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745287087736-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-22T01:58:08.157Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-22T01:58:08.157Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6806f7b03b68860e539c0f39&quot;,&quot;sku&quot;:&quot;SKU-1745287087736-2&quot;,&quot;productId&quot;:&quot;PROD-1745287087736-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745287087736-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-22T01:58:08.334Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-22T01:58:08.334Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6808494c3b68860e539c1000&quot;,&quot;sku&quot;:&quot;SKU-1745373516376-1&quot;,&quot;productId&quot;:&quot;PROD-1745373516376-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745373516376-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-23T01:58:36.809Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T01:58:36.809Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6808494c3b68860e539c1003&quot;,&quot;sku&quot;:&quot;SKU-1745373516376-2&quot;,&quot;productId&quot;:&quot;PROD-1745373516376-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745373516376-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-23T01:58:36.965Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T01:58:36.965Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6808ceaf3b68860e539c1134&quot;,&quot;sku&quot;:&quot;PROD-TEST-001&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-23T11:27:43.359Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T11:27:43.359Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680941d13b68860e539c12a1&quot;,&quot;sku&quot;:&quot;1PROD-TEST-001&quot;,&quot;productId&quot;:&quot;1EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;114607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-23T19:38:57.550Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T19:38:57.550Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68099aee3b68860e539c12a7&quot;,&quot;sku&quot;:&quot;SKU-1745459950255-1&quot;,&quot;productId&quot;:&quot;PROD-1745459950255-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745459950255-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-24T01:59:10.711Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-24T01:59:10.711Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68099aee3b68860e539c12aa&quot;,&quot;sku&quot;:&quot;SKU-1745459950255-2&quot;,&quot;productId&quot;:&quot;PROD-1745459950255-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745459950255-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-24T01:59:10.881Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-24T01:59:10.881Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680aec903b68860e539c137d&quot;,&quot;sku&quot;:&quot;SKU-1745546383828-1&quot;,&quot;productId&quot;:&quot;PROD-1745546383828-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745546383828-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-25T01:59:44.268Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-25T01:59:44.268Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680aec903b68860e539c1380&quot;,&quot;sku&quot;:&quot;SKU-1745546383828-2&quot;,&quot;productId&quot;:&quot;PROD-1745546383828-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745546383828-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-25T01:59:44.429Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-25T01:59:44.429Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e030a44bf689b9509cd&quot;,&quot;sku&quot;:&quot;SKU-101&quot;,&quot;productId&quot;:&quot;PROD-101&quot;,&quot;name&quot;:&quot;Смартфон Galaxy X&quot;,&quot;barcode&quot;:&quot;BARCODE-101&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:15:47.139Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:15:47.139Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e030a44bf689b9509d0&quot;,&quot;sku&quot;:&quot;SKU-102&quot;,&quot;productId&quot;:&quot;PROD-102&quot;,&quot;name&quot;:&quot;Беспроводные наушники Pro&quot;,&quot;barcode&quot;:&quot;BARCODE-102&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:15:47.145Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:15:47.145Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e030a44bf689b9509d3&quot;,&quot;sku&quot;:&quot;SKU-103&quot;,&quot;productId&quot;:&quot;PROD-103&quot;,&quot;name&quot;:&quot;Чехол для смартфона&quot;,&quot;barcode&quot;:&quot;BARCODE-103&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:15:47.151Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:15:47.151Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e220a44bf689b9509db&quot;,&quot;sku&quot;:&quot;SKU-301&quot;,&quot;productId&quot;:&quot;PROD-301&quot;,&quot;name&quot;:&quot;Умные часы SmartWatch&quot;,&quot;barcode&quot;:&quot;BARCODE-301&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:16:18.973Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:16:18.973Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e220a44bf689b9509de&quot;,&quot;sku&quot;:&quot;SKU-302&quot;,&quot;productId&quot;:&quot;PROD-302&quot;,&quot;name&quot;:&quot;Портативная колонка&quot;,&quot;barcode&quot;:&quot;BARCODE-302&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:16:18.978Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:16:18.978Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e220a44bf689b9509e1&quot;,&quot;sku&quot;:&quot;SKU-303&quot;,&quot;productId&quot;:&quot;PROD-303&quot;,&quot;name&quot;:&quot;Кабель USB-C&quot;,&quot;barcode&quot;:&quot;BARCODE-303&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:16:18.984Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:16:18.984Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e3ae50a44bf689b950a90&quot;,&quot;sku&quot;:&quot;PROD-001&quot;,&quot;productId&quot;:&quot;EXT-001&quot;,&quot;name&quot;:&quot;Смартфон XYZ&quot;,&quot;barcode&quot;:&quot;4607123456789&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:10:45.694Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:10:45.694Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e401a0a44bf689b950b8b&quot;,&quot;sku&quot;:&quot;PROD-002&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:32:58.539Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:32:58.539Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e40b50a44bf689b950bc4&quot;,&quot;sku&quot;:&quot;PROD-003&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:35:33.512Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:35:33.512Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e42d50a44bf689b950c0a&quot;,&quot;sku&quot;:&quot;PROD-004&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:44:37.114Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:44:37.114Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e43a20a44bf689b950c22&quot;,&quot;sku&quot;:&quot;PROD-005&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:48:02.818Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:48:02.818Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102c200a44bf689b951217&quot;,&quot;sku&quot;:&quot;PROD-TEST-101&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:32:16.933Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:32:16.933Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102c490a44bf689b95121a&quot;,&quot;sku&quot;:&quot;PROD-TEST-201&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:32:57.812Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:32:57.812Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102fee0a44bf689b951238&quot;,&quot;sku&quot;:&quot;PROD-TEST-200&quot;,&quot;productId&quot;:&quot;EXT-TEST-201&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:48:30.571Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:48:30.571Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102ffb0a44bf689b95123c&quot;,&quot;sku&quot;:&quot;PROD-TEST-210&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:48:43.299Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:48:43.299Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6810323c0a44bf689b9512ce&quot;,&quot;sku&quot;:&quot;PROD-TEST-221&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:58:20.373Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:58:20.373Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681032db0a44bf689b95135e&quot;,&quot;sku&quot;:&quot;PROD-TEST-222&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T02:00:59.421Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T02:00:59.421Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6810e3783a6da5ac74ae0a1f&quot;,&quot;sku&quot;:&quot;PROD-TEST-223&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T14:34:32.196Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T14:34:32.196Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6810e3b23a6da5ac74ae0a22&quot;,&quot;sku&quot;:&quot;PROD-TEST-224&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T14:35:30.002Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T14:35:30.002Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68165ae03a6da5ac74ae0a97&quot;,&quot;sku&quot;:&quot;PROD-TEST-111&quot;,&quot;productId&quot;:&quot;EXT-TEST-111&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456111&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-03T18:05:20.961Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-03T18:05:20.962Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68165bd93a6da5ac74ae0a9b&quot;,&quot;sku&quot;:&quot;PROD-TEST-112&quot;,&quot;productId&quot;:&quot;EXT-TEST-112&quot;,&quot;name&quot;:&quot;Тестовый смартфон 2&quot;,&quot;barcode&quot;:&quot;4607123456112&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-03T18:09:29.140Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-03T18:09:29.140Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68167c233a6da5ac74ae0b23&quot;,&quot;sku&quot;:&quot;PROD-TEST-292&quot;,&quot;productId&quot;:&quot;EXT-TEST-292&quot;,&quot;name&quot;:&quot;Тестовый смартфон 3&quot;,&quot;barcode&quot;:&quot;4607123456292&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-03T20:27:15.941Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-03T20:27:15.941Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6818b4673a6da5ac74ae0c47&quot;,&quot;sku&quot;:&quot;PROD-NAST-001&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-05T12:51:51.859Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-05T12:51:51.859Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6818b4d93a6da5ac74ae0c4c&quot;,&quot;sku&quot;:&quot;PROD-NAST-002&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-05T12:53:45.500Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-05T12:53:45.500Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:5,&quot;width&quot;:10,&quot;height&quot;:5,&quot;weight&quot;:2},&quot;_id&quot;:&quot;681b558f3a6da5ac74ae0d95&quot;,&quot;sku&quot;:&quot;122342343&quot;,&quot;productId&quot;:&quot;123213&quot;,&quot;name&quot;:&quot;тесмт&quot;,&quot;barcode&quot;:&quot;785335345345&quot;,&quot;category&quot;:&quot;&lt;string&gt;&quot;,&quot;createdAt&quot;:&quot;2025-05-07T12:43:59.013Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-07T12:43:59.013Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3a873a6da5ac74ae10c6&quot;,&quot;sku&quot;:&quot;PROD-TEST-0019&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:25:27.364Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:25:27.365Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3b663a6da5ac74ae10ca&quot;,&quot;sku&quot;:&quot;PROD-TEST-0020&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:29:10.446Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:29:10.446Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3c8c3a6da5ac74ae10ce&quot;,&quot;sku&quot;:&quot;PROD-TEST-0021&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:34:04.965Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:34:04.965Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3d163a6da5ac74ae10d1&quot;,&quot;sku&quot;:&quot;PROD-TEST-0022&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:36:22.779Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:36:22.779Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68232dd23a6da5ac74ae1da2&quot;,&quot;sku&quot;:&quot;PROD-TEST-001-1&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-13T11:32:34.387Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-13T11:32:34.387Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68244f433a6da5ac74ae1db8&quot;,&quot;sku&quot;:&quot;PROD-TEST-16351&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-14T08:07:31.216Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-14T08:07:31.216Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;682632c23a6da5ac74ae2662&quot;,&quot;sku&quot;:&quot;&lt;string&gt;&quot;,&quot;productId&quot;:&quot;&lt;string&gt;&quot;,&quot;name&quot;:&quot;&lt;string&gt;&quot;,&quot;barcode&quot;:&quot;&lt;string&gt;&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-15T18:30:26.583Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-15T18:30:26.583Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68375d4d3a6da5ac74aeda88&quot;,&quot;sku&quot;:&quot;PROD-1&quot;,&quot;productId&quot;:&quot;product-1&quot;,&quot;name&quot;:&quot;Pants&quot;,&quot;barcode&quot;:&quot;6543&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T19:00:29.964Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T19:00:29.964Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aeda97&quot;,&quot;sku&quot;:&quot;SKU-0000&quot;,&quot;productId&quot;:&quot;PID-svt3z29w&quot;,&quot;name&quot;:&quot;Product 1&quot;,&quot;barcode&quot;:&quot;1447850918232&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.692Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.693Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aeda9a&quot;,&quot;sku&quot;:&quot;SKU-0001&quot;,&quot;productId&quot;:&quot;PID-da0gwb7e&quot;,&quot;name&quot;:&quot;Product 2&quot;,&quot;barcode&quot;:&quot;5784560577284&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.697Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.697Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aeda9d&quot;,&quot;sku&quot;:&quot;SKU-0002&quot;,&quot;productId&quot;:&quot;PID-l8kd2gr4&quot;,&quot;name&quot;:&quot;Product 3&quot;,&quot;barcode&quot;:&quot;6718764287384&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.702Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.702Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aedaa0&quot;,&quot;sku&quot;:&quot;SKU-0003&quot;,&quot;productId&quot;:&quot;PID-ulaoz8xo&quot;,&quot;name&quot;:&quot;Product 4&quot;,&quot;barcode&quot;:&quot;6180675278812&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.707Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.707Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aedaa3&quot;,&quot;sku&quot;:&quot;SKU-0004&quot;,&quot;productId&quot;:&quot;PID-vne76722&quot;,&quot;name&quot;:&quot;Product 5&quot;,&quot;barcode&quot;:&quot;4968801460878&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.712Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.712Z&quot;,&quot;__v&quot;:0}]</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-0f9234d2-3331-4f1d-82fe-b3d136860138">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="datatable table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr >
+                                                    <td >Статус код 200</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">1</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="row d-none">
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="card-deck">
+                                        <div class="card border-danger" style="width: 50rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div id="folder-9fd54b3a-2865-4eac-af26-b741a89f1b03" class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03" aria-expanded="false" aria-controls="collapse" id="requests-9fd54b3a-2865-4eac-af26-b741a89f1b03" class="collapsed text-white z-block">
+                    Iteration: 1 - Создать новый заказ <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
+                </a>
+                    </div>
+                    <div id="collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03" class="collapse" aria-labelledby="requests-9fd54b3a-2865-4eac-af26-b741a89f1b03">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code class="renderMarkdown">## Создает новый заказ в системе с указанными товарами
+        
+        Этот запрос используется для создания нового заказа в системе. Он отправляет информацию о заказе, включая номер заказа и список товаров.
+        
+        ### Формат запроса
+        
+        **Метод:** POST  
+        **URL:** &#x60;https://sklad.testerhub.ru/wms/v1/orders&#x60;
+        
+        **Тело запроса:**
+        
+        &#x60;&#x60;&#x60; json
+        {
+          &quot;orderNumber&quot;: &quot;ORD-12345&quot;,
+          &quot;externalOrderId&quot;: &quot;EXT-12345&quot;,
+          &quot;customer&quot;: {
+            &quot;name&quot;: &quot;Иван Иванов&quot;,
+            &quot;address&quot;: &quot;г. Москва, ул. Примерная, д.1&quot;,
+            &quot;phone&quot;: &quot;+7 999 123-45-67&quot;,
+            &quot;email&quot;: &quot;example@example.com&quot;
+          },
+          &quot;priority&quot;: 1,
+          &quot;items&quot;: [
+            {
+              &quot;sku&quot;: &quot;PROD-001&quot;,
+              &quot;quantity&quot;: 2
+            }
+          ]
+        }
+        
+         &#x60;&#x60;&#x60;
+        
+        - &#x60;orderNumber&#x60; (строка): Уникальный номер заказа.
+            
+        - &#x60;items&#x60; (объект): Содержит информацию о товарах в заказе. Ожидается, что это будет объект с деталями товаров.
+            
+        
+        ### Структура ответа
+        
+        При успешном выполнении запроса (статус 201) вы получите ответ в следующем формате:
+        
+        &#x60;&#x60;&#x60; json
+        {
+          &quot;_id&quot;: &quot;60d21b4667d0d8992e610c85&quot;,
+          &quot;orderNumber&quot;: &quot;ORD-12345&quot;,
+          &quot;externalOrderId&quot;: &quot;EXT-12345&quot;,
+          &quot;customer&quot;: {
+            &quot;name&quot;: &quot;Иван Иванов&quot;,
+            &quot;address&quot;: &quot;г. Москва, ул. Примерная, д. 1&quot;,
+            &quot;phone&quot;: &quot;+7 999 123-45-67&quot;,
+            &quot;email&quot;: &quot;example@example.com&quot;
+          },
+          &quot;status&quot;: &quot;new&quot;,
+          &quot;priority&quot;: 1,
+          &quot;items&quot;: [
+            {
+              &quot;productId&quot;: &quot;60d21b4667d0d8992e610c86&quot;,
+              &quot;sku&quot;: &quot;PROD-001&quot;,
+              &quot;name&quot;: &quot;Смартфон XYZ&quot;,
+              &quot;quantity&quot;: 2,
+              &quot;pickedQuantity&quot;: 0,
+              &quot;status&quot;: &quot;pending&quot;
+            }
+          ],
+          &quot;createdAt&quot;: &quot;2025-03-10T10:00:00Z&quot;,
+          &quot;updatedAt&quot;: &quot;2025-03-10T14:30:00Z&quot;
+        }
+        
+         &#x60;&#x60;&#x60;
+        
+        - &#x60;_id&#x60;: Уникальный идентификатор заказа.
+            
+        - &#x60;orderNumber&#x60;: Номер заказа.
+            
+        - &#x60;externalOrderId&#x60;: Внешний идентификатор заказа.
+            
+        - &#x60;customer&#x60;: Информация о клиенте, включая имя, адрес, телефон и электронную почту.
+            
+        - &#x60;status&#x60;: Статус заказа.
+            
+        - &#x60;priority&#x60;: Приоритет заказа.
+            
+        - &#x60;items&#x60;: Массив объектов, представляющих товары в заказе, каждый из которых содержит:
+            
+            - &#x60;productId&#x60;: Идентификатор продукта.
+                
+            - &#x60;sku&#x60;: Артикул товара.
+                
+            - &#x60;name&#x60;: Название товара.
+                
+            - &#x60;quantity&#x60;: Количество товара в заказе.
+                
+            - &#x60;pickedQuantity&#x60;: Количество товара, которое было выбрано.
+                
+            - &#x60;status&#x60;: Статус товара в заказе.
+                
+        - &#x60;createdAt&#x60;: Дата и время создания заказа.
+            
+        - &#x60;updatedAt&#x60;: Дата и время последнего обновления заказа.</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> POST</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://sklad.testerhub.ru/wms/v1/orders" target="_blank">https://sklad.testerhub.ru/wms/v1/orders</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 201 - Created</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 211ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 741B</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Headers</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                            <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-nowrap">Content-Type</td>
+                                                        <td class="text-wrap">application/json</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept</td>
+                                                        <td class="text-wrap">application/json</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">x-mock-response-code</td>
+                                                        <td class="text-wrap"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Authorization</td>
+                                                        <td class="text-wrap">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NTIwNTM2NTMsImV4cCI6MTc1MjE0MDA1M30.ma3hWGYHZ18r7z6sOdpVHASxl0RP_jbT1RGFHeTED_o</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">User-Agent</td>
+                                                        <td class="text-wrap">PostmanRuntime/7.39.1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Cache-Control</td>
+                                                        <td class="text-wrap">no-cache</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Postman-Token</td>
+                                                        <td class="text-wrap">36bb154a-5bb2-412e-948a-03e476985eae</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Host</td>
+                                                        <td class="text-wrap">sklad.testerhub.ru</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept-Encoding</td>
+                                                        <td class="text-wrap">gzip, deflate, br</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Connection</td>
+                                                        <td class="text-wrap">keep-alive</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Content-Length</td>
+                                                        <td class="text-wrap">292</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                        <div class="dyn-height">
+                                            <pre><code id="copyReqText-2" class="prettyPrint">{
+          &quot;orderNumber&quot;: &quot;ORD-1752053653776&quot;,
+          &quot;items&quot;: [{&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;quantity&quot;:2},{&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;quantity&quot;:2}],
+          &quot;externalOrderId&quot;: &quot;123&quot;,
+          &quot;customer&quot;: {&quot;name&quot;:&quot;Sergey&quot;,&quot;address&quot;:&quot;Cherepovets&quot;,&quot;phone&quot;:&quot;+79310000001&quot;,&quot;email&quot;:&quot;Qwerty@mail.ru&quot;},
+          &quot;priority&quot;: &quot;1&quot;
+        }</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-2">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">Server</td>
+                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Date</td>
+                                                    <td class="text-wrap">Wed, 09 Jul 2025 09:34:13 GMT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Type</td>
+                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Length</td>
+                                                    <td class="text-wrap">741</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Connection</td>
+                                                    <td class="text-wrap">keep-alive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">X-Powered-By</td>
+                                                    <td class="text-wrap">Express</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">ETag</td>
+                                                    <td class="text-wrap">W/&quot;2e5-J19sO1rwHhtI3W9xytMrVA+aDP4&quot;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-118f57da-37cd-4fee-be89-2f24801393c2" class="prettyPrint">{&quot;orderNumber&quot;:&quot;ORD-1752053653776&quot;,&quot;externalOrderId&quot;:&quot;123&quot;,&quot;customer&quot;:{&quot;name&quot;:&quot;Sergey&quot;,&quot;address&quot;:&quot;Cherepovets&quot;,&quot;phone&quot;:&quot;+79310000001&quot;,&quot;email&quot;:&quot;Qwerty@mail.ru&quot;},&quot;status&quot;:&quot;new&quot;,&quot;priority&quot;:1,&quot;items&quot;:[{&quot;productId&quot;:&quot;67fbba5e3b68860e539c02e3&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;pending&quot;,&quot;_id&quot;:&quot;686e3795c3ebc890ea841046&quot;},{&quot;productId&quot;:&quot;67fbba5f3b68860e539c02e6&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;pending&quot;,&quot;_id&quot;:&quot;686e3795c3ebc890ea841047&quot;}],&quot;_id&quot;:&quot;686e3795c3ebc890ea841045&quot;,&quot;createdAt&quot;:&quot;2025-07-09T09:34:13.891Z&quot;,&quot;updatedAt&quot;:&quot;2025-07-09T09:34:13.891Z&quot;,&quot;__v&quot;:0}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-118f57da-37cd-4fee-be89-2f24801393c2">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="datatable table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr >
+                                                    <td >Status code is 201</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">1</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="row d-none">
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="card-deck">
+                                        <div class="card border-danger" style="width: 50rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div id="folder-f07131ed-23e5-4ec5-9b44-efe56b347f5e" class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e" aria-expanded="false" aria-controls="collapse" id="requests-f07131ed-23e5-4ec5-9b44-efe56b347f5e" class="collapsed text-white z-block">
+                    Iteration: 1 - Резервировать товары для заказа <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
+                </a>
+                    </div>
+                    <div id="collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e" class="collapse" aria-labelledby="requests-f07131ed-23e5-4ec5-9b44-efe56b347f5e">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code class="renderMarkdown">### Описание запроса
+        
+        Этот запрос используется для резервирования товаров на складе для выполнения конкретного заказа.
+        
+        ### Цель запроса
+        
+        Резервировать товары, связанные с указанным заказом, чтобы обеспечить их доступность для последующей обработки и доставки.
+        
+        ### Ожидаемые входные параметры
+        
+        - **id** (параметр URL): Уникальный идентификатор заказа, для которого необходимо зарезервировать товары.
+            
+        
+        ### Структура ответа
+        
+        При успешном выполнении запроса возвращается статус 200 и следующий JSON-объект:
+        
+        &#x60;&#x60;&#x60; json
+        {
+          &quot;message&quot;: &quot;Items reserved successfully&quot;,
+          &quot;order&quot;: {
+            &quot;_id&quot;: &quot;60d21b4667d0d8992e610c85&quot;,
+            &quot;orderNumber&quot;: &quot;ORD-12345&quot;,
+            &quot;externalOrderId&quot;: &quot;EXT-12345&quot;,
+            &quot;customer&quot;: {
+              &quot;name&quot;: &quot;Иван Иванов&quot;,
+              &quot;address&quot;: &quot;г. Москва, ул. Примерная, д. 1&quot;,
+              &quot;phone&quot;: &quot;+7 999 123-45-67&quot;,
+              &quot;email&quot;: &quot;example@example.com&quot;
+            },
+            &quot;status&quot;: &quot;new&quot;,
+            &quot;priority&quot;: 1,
+            &quot;items&quot;: [
+              {
+                &quot;productId&quot;: &quot;60d21b4667d0d8992e610c86&quot;,
+                &quot;sku&quot;: &quot;PROD-001&quot;,
+                &quot;name&quot;: &quot;Смартфон XYZ&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;pickedQuantity&quot;: 0,
+                &quot;status&quot;: &quot;pending&quot;
+              }
+            ],
+            &quot;createdAt&quot;: &quot;2025-03-10T10:00:00Z&quot;,
+            &quot;updatedAt&quot;: &quot;2025-03-10T14:30:00Z&quot;
+          },
+          &quot;items&quot;: [
+            {
+              &quot;sku&quot;: &quot;PROD-001&quot;,
+              &quot;required&quot;: 2,
+              &quot;available&quot;: 10,
+              &quot;status&quot;: &quot;reserved&quot;
+            }
+          ]
+        }
+        
+         &#x60;&#x60;&#x60;
+        
+        - **message**: Сообщение, связанное с выполнением запроса.
+            
+        - **order**: Объект, представляющий информацию о заказе, включая:
+            
+            - **_id**: Уникальный идентификатор заказа.
+                
+            - **orderNumber**: Номер заказа.
+                
+            - **externalOrderId**: Внешний идентификатор заказа.
+                
+            - **customer**: Информация о клиенте, включая имя, адрес, телефон и email.
+                
+            - **status**: Текущий статус заказа.
+                
+            - **priority**: Приоритет заказа.
+                
+            - **items**: Список товаров в заказе с их деталями.
+                
+            - **createdAt**: Дата создания заказа.
+                
+            - **updatedAt**: Дата последнего обновления заказа.
+                
+        - **items**: Список товаров, которые были зарезервированы, с их статусом и доступностью.
+            
+        
+        ### Возможные ошибки
+        
+        При выполнении запроса может быть возвращен статус 400 с сообщением об ошибке в формате JSON:
+        
+        &#x60;&#x60;&#x60; json
+        {
+          &quot;error&quot;: &quot;Insufficient inventory for some items&quot;,
+          &quot;items&quot;: [
+            {
+              &quot;sku&quot;: &quot;string&quot;,
+              &quot;required&quot;: 0,
+              &quot;available&quot;: 0,
+              &quot;status&quot;: &quot;insufficient&quot;
+            }
+          ]
+        }
+        
+         &#x60;&#x60;&#x60;</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> POST</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://sklad.testerhub.ru/wms/v1/orders/686e3795c3ebc890ea841045/reserve" target="_blank">https://sklad.testerhub.ru/wms/v1/orders/686e3795c3ebc890ea841045/reserve</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 211ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 968B</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Headers</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                            <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept</td>
+                                                        <td class="text-wrap">application/json</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">x-mock-response-code</td>
+                                                        <td class="text-wrap"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Authorization</td>
+                                                        <td class="text-wrap">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NTIwNTM2NTMsImV4cCI6MTc1MjE0MDA1M30.ma3hWGYHZ18r7z6sOdpVHASxl0RP_jbT1RGFHeTED_o</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">User-Agent</td>
+                                                        <td class="text-wrap">PostmanRuntime/7.39.1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Cache-Control</td>
+                                                        <td class="text-wrap">no-cache</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Postman-Token</td>
+                                                        <td class="text-wrap">98a89be2-af9a-48f7-8390-2dae2662183a</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Host</td>
+                                                        <td class="text-wrap">sklad.testerhub.ru</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Accept-Encoding</td>
+                                                        <td class="text-wrap">gzip, deflate, br</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Connection</td>
+                                                        <td class="text-wrap">keep-alive</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-nowrap">Content-Length</td>
+                                                        <td class="text-wrap">0</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">Server</td>
+                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Date</td>
+                                                    <td class="text-wrap">Wed, 09 Jul 2025 09:34:14 GMT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Type</td>
+                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Content-Length</td>
+                                                    <td class="text-wrap">968</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">Connection</td>
+                                                    <td class="text-wrap">keep-alive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">X-Powered-By</td>
+                                                    <td class="text-wrap">Express</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">ETag</td>
+                                                    <td class="text-wrap">W/&quot;3c8-M106dXOhHZYOgev4x5GLwa45tLw&quot;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-91e8dd0c-1e9b-4976-88bd-f4adc05d8647" class="prettyPrint">{&quot;message&quot;:&quot;Items reserved successfully&quot;,&quot;order&quot;:{&quot;customer&quot;:{&quot;name&quot;:&quot;Sergey&quot;,&quot;address&quot;:&quot;Cherepovets&quot;,&quot;phone&quot;:&quot;+79310000001&quot;,&quot;email&quot;:&quot;Qwerty@mail.ru&quot;},&quot;_id&quot;:&quot;686e3795c3ebc890ea841045&quot;,&quot;orderNumber&quot;:&quot;ORD-1752053653776&quot;,&quot;externalOrderId&quot;:&quot;123&quot;,&quot;status&quot;:&quot;processing&quot;,&quot;priority&quot;:1,&quot;items&quot;:[{&quot;productId&quot;:&quot;67fbba5e3b68860e539c02e3&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;reserved&quot;,&quot;_id&quot;:&quot;686e3795c3ebc890ea841046&quot;},{&quot;productId&quot;:&quot;67fbba5f3b68860e539c02e6&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;reserved&quot;,&quot;_id&quot;:&quot;686e3795c3ebc890ea841047&quot;}],&quot;createdAt&quot;:&quot;2025-07-09T09:34:13.891Z&quot;,&quot;updatedAt&quot;:&quot;2025-07-09T09:34:14.127Z&quot;,&quot;__v&quot;:0},&quot;items&quot;:[{&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;required&quot;:2,&quot;available&quot;:108,&quot;status&quot;:&quot;reserved&quot;},{&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;required&quot;:2,&quot;available&quot;:138,&quot;status&quot;:&quot;reserved&quot;}]}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-91e8dd0c-1e9b-4976-88bd-f4adc05d8647">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="datatable table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr >
+                                                    <td >Статус 200</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">1</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="row d-none">
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="card-deck">
+                                        <div class="card border-danger" style="width: 50rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- Set slider initial position depending on the localstorage state -->
+
+<script>
+(function () {
+  var sliderChecked = true;
+  if (localStorage.getItem('theme') === 'theme-light') {
+    setTheme('theme-light');
+    sliderChecked = false;
+  } else {
+    setTheme('theme-dark');
+    sliderChecked = true;
+  }
+  $(document).ready( function () {
+    document.getElementById('slider').checked = sliderChecked;
+  });
+})();
+</script>
+
+<!-- Data Table Configuration -->
+
+<script>
+$(document).ready( function () {
+    $('.datatable').DataTable({
+        "retrieve": true,
+        "paging": false,
+        "info": false,
+        "fixedColumns":   {
+            "heightMatch": 'none'
+        }
+    });
+});
+</script>
+
+<!-- Tooltip Configuration -->
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    })
+})
+</script>
+
+<!-- Show/Hide The Folders -->
+
+<script>
+$('#openAll').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+            $('#folder-4bd9608d-3d8f-435c-8982-813490b43b19-iteration-0').removeClass('collapsed')
+            $('#folder-collapse-4bd9608d-3d8f-435c-8982-813490b43b19-iteration-0').addClass('show')
+        $('#openAll').html("Collapse Folders");
+        break;
+    case 2:
+            $('#folder-4bd9608d-3d8f-435c-8982-813490b43b19-iteration-0').addClass('collapsed')
+            $('#folder-collapse-4bd9608d-3d8f-435c-8982-813490b43b19-iteration-0').removeClass('show')
+        $('#openAll').html("Expand Folders");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Show/Hide The Requests -->
+
+<script>
+$('#openAllRequests').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+            $('#requests-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('collapsed')
+            $('#collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('collapsed')
+            $('#requests-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('show')
+            $('#collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('show')
+            $('#requests-6a267f70-5503-443c-b634-162fc9a17939').removeClass('collapsed')
+            $('#collapse-6a267f70-5503-443c-b634-162fc9a17939').removeClass('collapsed')
+            $('#requests-6a267f70-5503-443c-b634-162fc9a17939').addClass('show')
+            $('#collapse-6a267f70-5503-443c-b634-162fc9a17939').addClass('show')
+            $('#requests-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('collapsed')
+            $('#collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('collapsed')
+            $('#requests-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('show')
+            $('#collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('show')
+            $('#requests-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('collapsed')
+            $('#collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('collapsed')
+            $('#requests-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('show')
+            $('#collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('show')
+        $('#openAllRequests').html("Collapse Requests");
+        break;
+    case 2:
+            $('#requests-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('collapsed')
+            $('#collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('collapsed')
+            $('#requests-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('show')
+            $('#collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('show')
+            $('#requests-6a267f70-5503-443c-b634-162fc9a17939').addClass('collapsed')
+            $('#collapse-6a267f70-5503-443c-b634-162fc9a17939').addClass('collapsed')
+            $('#requests-6a267f70-5503-443c-b634-162fc9a17939').removeClass('show')
+            $('#collapse-6a267f70-5503-443c-b634-162fc9a17939').removeClass('show')
+            $('#requests-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('collapsed')
+            $('#collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('collapsed')
+            $('#requests-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('show')
+            $('#collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('show')
+            $('#requests-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('collapsed')
+            $('#collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('collapsed')
+            $('#requests-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('show')
+            $('#collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('show')
+        $('#openAllRequests').html("Expand Requests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Show/Hide The Skipped Tests -->
+
+<script>
+$('#openAllSkipped').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+            $('#skipped-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('collapsed')
+            $('#skipped-collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('collapsed')
+            $('#skipped-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('show')
+            $('#skipped-collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('show')
+            $('#skipped-6a267f70-5503-443c-b634-162fc9a17939').removeClass('collapsed')
+            $('#skipped-collapse-6a267f70-5503-443c-b634-162fc9a17939').removeClass('collapsed')
+            $('#skipped-6a267f70-5503-443c-b634-162fc9a17939').addClass('show')
+            $('#skipped-collapse-6a267f70-5503-443c-b634-162fc9a17939').addClass('show')
+            $('#skipped-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('collapsed')
+            $('#skipped-collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('collapsed')
+            $('#skipped-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('show')
+            $('#skipped-collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('show')
+            $('#skipped-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('collapsed')
+            $('#skipped-collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('collapsed')
+            $('#skipped-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('show')
+            $('#skipped-collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('show')
+        $('#openAllSkipped').html("Collapse All Skipped Tests");
+        break;
+    case 2:
+            $('#skipped-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('collapsed')
+            $('#skipped-collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').addClass('collapsed')
+            $('#skipped-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('show')
+            $('#skipped-collapse-cf72f5d5-c4fd-4e8a-931a-66df92fc8ce7').removeClass('show')
+            $('#skipped-6a267f70-5503-443c-b634-162fc9a17939').addClass('collapsed')
+            $('#skipped-collapse-6a267f70-5503-443c-b634-162fc9a17939').addClass('collapsed')
+            $('#skipped-6a267f70-5503-443c-b634-162fc9a17939').removeClass('show')
+            $('#skipped-collapse-6a267f70-5503-443c-b634-162fc9a17939').removeClass('show')
+            $('#skipped-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('collapsed')
+            $('#skipped-collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').addClass('collapsed')
+            $('#skipped-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('show')
+            $('#skipped-collapse-9fd54b3a-2865-4eac-af26-b741a89f1b03').removeClass('show')
+            $('#skipped-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('collapsed')
+            $('#skipped-collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').addClass('collapsed')
+            $('#skipped-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('show')
+            $('#skipped-collapse-f07131ed-23e5-4ec5-9b44-efe56b347f5e').removeClass('show')
+        $('#openAllSkipped').html("Expand All Skipped Tests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Show/Hide The Failures -->
+
+<script>
+$('#openAllFailed').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+let failedItemContent
+let failedItemHeading
+switch (clickCount){
+    case 1:
+        $('#openAllFailed').html("Collapse All Failed Tests");
+        break;
+    case 2:
+        $('#openAllFailed').html("Expand All Failed Tests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Pretty Print the Response Body-->
+
+<script>
+function isJSON(data)
+{
+    var ret = true;
+    try {
+            JSON.parse(data);
+    }catch(e) {
+            ret = false;
+    }
+    return ret;
+}
+
+function isXML(data)
+{
+    return (data.length > 0 && data[0] === '<');
+}
+
+// see https://gist.github.com/sente/1083506/d2834134cd070dbcc08bf42ee27dabb746a1c54d#gistcomment-2254622
+function formatXML(data) {
+    const PADDING = ' '.repeat(2); // set desired indent size here
+    const reg = /(>)(<)(\/*)/g;
+    let pad = 0;
+    xml = data.replace(reg, '$1\r\n$2$3');
+
+    return xml.split('\r\n').map((node, index) => {
+        let indent = 0;
+        if (node.match(/.+<\/\w[^>]*>$/)) {
+            indent = 0;
+        } else if (node.match(/^<\/\w/) && pad > 0) {
+            pad -= 1;
+        } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+            indent = 1;
+        } else {
+            indent = 0;
+        }
+
+        pad += indent;
+        return PADDING.repeat(pad - indent) + node;
+    }).join('\r\n');
+}
+
+$(".prettyPrint").each(function () {
+        var data = $(this).text();
+        // Verify whether data is JSON
+        if(isJSON(data))
+        {
+                obj = JSON.parse(data);
+                data = JSON.stringify(obj, null, 2);
+        }
+        else if(isXML(data)) {
+            data = formatXML(data);
+        }
+        $(this).text(data);
+});
+</script>
+
+
+<!-- Copy Response Body To Clipboard -->
+
+<script>
+    var clipboard = new ClipboardJS('.copyButton');
+
+    clipboard.on('success', function(e) {
+        e.clearSelection();
+        $(".copyButton").addClass("bg-success text-white")
+        e.trigger.textContent = '✔ Copied!';
+        window.setTimeout(function() {
+            $(".copyButton").removeClass("bg-success text-white")
+            e.trigger.textContent = 'Copy to Clipboard';
+        }, 2000);
+    });
+    clipboard.on('error', function(e) {
+        e.clearSelection();
+        $(".copyButton").addClass("bg-danger text-white")
+        e.trigger.textContent = '✗ Not Copied';
+        window.setTimeout(function() {
+            $(".copyButton").removeClass("bg-danger text-white")
+            e.trigger.textContent = 'Copy to Clipboard';
+        }, 2000);
+    });
+
+</script>
+
+<!-- Render the Description Markdown and link in the test failures -->
+
+<script>
+    const remarkable = new Remarkable();
+
+    const descriptions = document.querySelectorAll(".renderMarkdown");
+    descriptions.forEach(description => {
+        description.innerHTML = renderHtmlFromMarkdown(description.textContent);
+    });
+    function renderHtmlFromMarkdown(markdown) {
+        return remarkable.render(trim(markdown));
+    }
+    function trim(string) {
+        return string ? string.replace(/^ +| +$/gm, "") : string;
+    }
+</script>
+
+<!-- Show/Hide The Toggles When Scrolling The Page -->
+
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("topOfRequestsScreen").style.display = "block";
+    document.getElementById("topOfFailuresScreen").style.display = "block";
+    document.getElementById("topOfSkippedScreen").style.display = "block";
+    document.getElementById("openAll").style.display = "none";
+    document.getElementById("openAllRequests").style.display = "none";
+
+
+  } else {
+    document.getElementById("topOfRequestsScreen").style.display = "none";
+    document.getElementById("topOfFailuresScreen").style.display = "none";
+    document.getElementById("topOfSkippedScreen").style.display = "none";
+    document.getElementById("openAll").style.display = "block";
+    document.getElementById("openAllRequests").style.display = "block";
+
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+<!-- Creates The Iteration Tabs -->
+
+<script type="text/javascript">
+    "use strict";
+
+window.onload = function () {
+
+  // set display for all blocks of response
+  var allItems = document.querySelectorAll('[class*=iteration-]');
+  allItems.forEach(function(elem){
+    elem.style.display = 'block';
+  });
+
+   
+  let totalIterations = 1;
+   
+
+  let menu = document.querySelector('#execution-menu .nav');
+
+  for(var i = 0; i < totalIterations; i++)
+  {
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode((i + 1)));
+    li.setAttribute('id', 'iteration-' + i);
+    li.classList.add("custom-tab");
+    li.classList.add("itPassed");
+
+    li.addEventListener('click', function() {
+      //set display to none for all except row
+      let allItems = document.querySelectorAll('[class*=iteration-]:not(.row)');
+      allItems.forEach(function(elem) {
+        elem.style.display = 'none';
+      })
+
+      let allMenus = document.querySelectorAll('[id*=iteration-]');
+      allMenus.forEach(function(elem){
+        elem.style.borderBottom = 'none';
+      })
+
+      this.style.borderBottom = 'solid 3px #032a33';
+
+      let items = document.querySelectorAll("." + this.id + ':not(.row)');
+      items.forEach(function(elem) {
+        elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
+      })
+    });
+    menu.appendChild(li);
+  }
+
+  //shows first tab data
+  document.getElementById('iteration-0').click();
+  document.getElementById('iterationSelected').innerHTML = `Iteration ${document.getElementById('iteration-0').innerHTML} selected`
+
+}
+</script>
+
+<!-- Create the Selected Iteration Label -->
+
+<script>
+$(document).ready(function(){
+    $(function() {
+        $("#iterationList li").click(function() {
+            document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+        });
+    });
+});
+</script>
+
+<!-- Filter Action for the Iterations -->
+
+<script>
+$("#filterInput").on("input paste", function() {
+    var value = $(this).val();
+    $("#iterationList li").filter(function() {
+	    $("#showOnlyFailures").data("clickCount") ? $("#showOnlyFailures").click():null;
+        $(this).toggle($(this).text().indexOf(value) > -1)
+    });
+});
+</script>
+
+<!-- Showing the Failed Interations -->
+
+<script>
+$('#showOnlyFailures').on('click', function(e) {
+    let clickCount = $(this).data("clickCount") || 1
+	$("#filterInput").val()!="" && clickCount==1 ? $("#filterInput").val('').trigger('input'): null;
+    let selectedIteration = $('#iterationList li').filter(function () {
+        return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
+    });
+    selectedIteration.length || clickCount > 1 ? null : $("#iterationList li.itFailed")[0].click()
+    $("#iterationList li.itPassed").toggle()
+    $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').toggle();
+    clickCount = clickCount > 1 ? 1 : ++clickCount;
+    clickCount > 1 ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
+    $(this).data("clickCount", clickCount)
+})
+</script>
+</body>
+</html>
