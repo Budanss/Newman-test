@@ -31,13 +31,16 @@ jobs:
       - name: Create reports directory
         run: mkdir -p reports
         # Создаёт папку reports для сохранения отчёта
-
+      
+      - name: Set date variable
+        run: echo "REPORT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        
       - name: Run Newman tests (with CLI log)
         run: |
           newman run collections/newOrder.json \
           -e environment/Dev-environment.json \
           -r cli,htmlextra \
-          --reporter-htmlextra-export reports/report.html
+          --reporter-htmlextra-export reports/report_${REPORT_DATE}.html
         continue-on-error: true
         # Запускает коллекцию:
         # - `collections/createOrder.json` — путь к твоей коллекции
