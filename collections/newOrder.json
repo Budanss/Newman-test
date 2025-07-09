@@ -1,0 +1,1229 @@
+{
+	"info": {
+		"_postman_id": "4bd9608d-3d8f-435c-8982-813490b43b19",
+		"name": "Создание заказа",
+		"description": "Коллекция предназначена для автоматизации процесса \"Создание заказа\".\n\nОна включает в себя последовательность из нескольких запросов:\n\n1\\. Авторизация пользователя\n\n2\\. Получение списка товаров\n\n3\\. Создание заказа\n\n4\\. Резервирование товаров по заказу\n\nПеременные, используемые в коллекции:\n\n- <u><i>userEmail, userPassword </i></u> — учетные данные пользователя\n    \n- <u><i>bearerToken</i></u> — токен после авторизации\n    \n- <u><i>orderItems</i></u> — выбранные товары\n    \n- <u><i>orderNumber, orderId </i></u> — номер и ID созданного заказа",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25913168"
+	},
+	"item": [
+		{
+			"name": "Авторизация пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"",
+							"pm.environment.set(\"bearerToken\", response.token);",
+							"",
+							"console.log(\"Авторизация выполнена успешно\")",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response contains required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('message', 'token', 'user');",
+							"    ",
+							"    pm.expect(responseData.user).to.be.an('object');",
+							"    pm.expect(responseData.user).to.have.all.keys('id', 'username', 'email', 'role');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response contains valid user object fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.user).to.be.an('object');",
+							"    ",
+							"    pm.expect(responseData.user).to.have.all.keys('id', 'username', 'email', 'role');",
+							"",
+							"    pm.expect(responseData.user.id).to.be.a('string');",
+							"    pm.expect(responseData.user.username).to.be.a('string');",
+							"    pm.expect(responseData.user.email).to.be.a('string').and.to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/, \"Email format is invalid\");",
+							"    pm.expect(responseData.user.role).to.be.a('string');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Token is a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.token).to.exist.and.to.be.a('string').and.to.have.lengthOf.above(0, \"Token should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Email must be in a valid format\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.user).to.exist.and.to.be.an('object');",
+							"    ",
+							"    const email = responseData.user.email;",
+							"    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/; // Simple email validation regex",
+							"    ",
+							"    pm.expect(email).to.match(emailRegex, \"Email format is invalid\");",
+							"});",
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>Message</th>",
+							"        <th>Token</th>",
+							"        <th>ID</th>",
+							"        <th>Username</th>",
+							"        <th>Email</th>",
+							"        <th>Role</th>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>{{response.message}}</td>",
+							"        <td>{{response.token}}</td>",
+							"        <td>{{response.user.id}}</td>",
+							"        <td>{{response.user.username}}</td>",
+							"        <td>{{response.user.email}}</td>",
+							"        <td>{{response.user.role}}</td>",
+							"    </tr>",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return { response: pm.response.json() };",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "x-mock-response-name",
+						"value": "OK",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-mock-response-code",
+						"value": "401",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+					"options": {
+						"raw": {
+							"headerFamily": "json",
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "### Описание API: Аутентификация пользователя\n\nДанный конечный пункт API предназначен для аутентификации пользователя с использованием его учетных данных. Запрос отправляется методом POST на адрес `{{baseUrl}}/auth/login` и требует предоставления email и пароля пользователя.\n\n#### Входные параметры\n\nТело запроса должно содержать следующие параметры в формате JSON:\n\n- **email** (строка): Адрес электронной почты пользователя, используемый для входа в систему.\n    \n- **password** (строка): Пароль пользователя, соответствующий указанному адресу электронной почты.\n    \n\nПример тела запроса:\n\n``` json\n{\n  \"email\": \"string\",\n  \"password\": \"string\"\n}\n\n ```\n\n#### Структура ответа\n\nПри успешной аутентификации сервер возвращает ответ с кодом состояния 200 и следующей структурой:\n\n``` json\n{\n  \"message\": \"string\",\n  \"token\": \"string\",\n  \"user\": {\n    \"id\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"role\": \"string\"\n  }\n}\n\n ```\n\n- **message** (строка): Сообщение от сервера, может быть пустым.\n    \n- **token** (строка): Токен аутентификации, который следует использовать для последующих запросов к защищенным конечным пунктам.\n    \n- **user** (объект): Объект, содержащий информацию о пользователе:\n    \n    - **id** (строка): Уникальный идентификатор пользователя.\n        \n    - **username** (строка): Имя пользователя.\n        \n    - **email** (строка): Адрес электронной почты пользователя.\n        \n    - **role** (строка): Роль пользователя в системе.\n        \n\nЭта информация может быть использована для дальнейшего взаимодействия с другими конечными пунктами API, которые могут возвращать аналогичные структуры данных."
+			},
+			"response": [
+				{
+					"name": "Успешная авторизация",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-mock-response-name",
+								"value": "OK",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-mock-response-code",
+								"value": "401",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Jul 2025 20:55:12 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "388"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"184-KpHOwx9THlCqbnRatG8KJ5LaUfk\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Авторизация успешна\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NTE0ODk3MTIsImV4cCI6MTc1MTU3NjExMn0.H7eZfEuF46eLFPHevrp9vFwOMHEuUgpgHfW1yp5p6Z8\",\n    \"user\": {\n        \"id\": \"680caa170a44bf689b95078f\",\n        \"username\": \"Sergey\",\n        \"email\": \"qwerty@mail.ru\",\n        \"role\": \"worker\"\n    }\n}"
+				},
+				{
+					"name": "Неверные учетные данные",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-mock-response-name",
+								"value": "OK",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-mock-response-code",
+								"value": "401",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Jul 2025 20:54:17 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-Se3/uhcqM+m29WkZWP1wtuDzRnE\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Неверный email или пароль\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Получить список товаров",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"let orderItems = [];",
+							"",
+							"if (response && response.length > 0) {",
+							"    let itemsToOrders = response.slice(0,2);",
+							"    for ( let i = 0; i < itemsToOrders.length; i ++) {",
+							"        orderItems.push({",
+							"            sku: itemsToOrders[i].sku,",
+							"            quantity: 2",
+							"        });",
+							"    }",
+							"    console.log(`Выбрано ${orderItems.length} товара для заказа`);",
+							"} else {",
+							"    console.log('Нет доступных товаров для заказа');",
+							"}",
+							"pm.collectionVariables.set(\"orderItems\", JSON.stringify(orderItems));",
+							"",
+							"pm.test(\"Статус код 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "x-mock-response-code",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "<string>",
+							"description": "Фильтр по категории товаров",
+							"disabled": true
+						},
+						{
+							"key": "inStock",
+							"value": "<boolean>",
+							"description": "Фильтр по наличию товаров на складе (true - только товары в наличии)",
+							"disabled": true
+						}
+					]
+				},
+				"description": "### Получение списка товаров\n\nЭтот запрос возвращает список всех товаров, доступных в системе. Вы можете использовать параметры фильтрации, чтобы ограничить результаты по категории или наличию на складе.\n\n#### Параметры запроса\n\n- **Нет обязательных параметров запроса.**\n    \n\n#### Ожидаемый ответ\n\n- **Статус:** `200 OK`\n    \n- **Content-Type:** `application/json`\n    \n- **Тело ответа:** Массив объектов, каждый из которых содержит следующую информацию о товаре:\n    \n    - `_id`: уникальный идентификатор товара\n        \n    - `sku`: артикул товара\n        \n    - `productId`: идентификатор продукта\n        \n    - `name`: название товара\n        \n    - `barcode`: штрих-код товара\n        \n    - `category`: категория товара\n        \n    - `dimensions`: объект, содержащий размеры товара:\n        \n        - `length`: длина\n            \n        - `width`: ширина\n            \n        - `height`: высота\n            \n        - `weight`: вес\n            \n    - `createdAt`: дата создания записи\n        \n    - `updatedAt`: дата последнего обновления записи\n        \n\n#### Примечания\n\n- Ответ может содержать несколько объектов товара, каждый из которых соответствует критериям поиска.\n    \n- Убедитесь, что вы обрабатываете возможные ошибки, которые могут возникнуть при выполнении запроса."
+			},
+			"response": [
+				{
+					"name": "Успешное получение списка товаров",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-mock-response-code",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "<string>",
+									"description": "Фильтр по категории товаров",
+									"disabled": true
+								},
+								{
+									"key": "inStock",
+									"value": "<boolean>",
+									"description": "Фильтр по наличию товаров на складе (true - только товары в наличии)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Jul 2025 21:13:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28494"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6f4e-EXQq7lPAMkCdFOzovAf8m4OGzUs\""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"_id\": \"6808494c3b68860e539c1003\",\n        \"sku\": \"SKU-1745373516376-2\",\n        \"productId\": \"PROD-1745373516376-2\",\n        \"name\": \"Тестовый товар для заказа 2\",\n        \"barcode\": \"BAR-1745373516376-2\",\n        \"category\": \"Одежда\",\n        \"createdAt\": \"2025-04-23T01:58:36.965Z\",\n        \"updatedAt\": \"2025-04-23T01:58:36.965Z\",\n        \"__v\": 0\n    },\n    {\n        \"dimensions\": {\n            \"length\": 15,\n            \"width\": 7.5,\n            \"height\": 1.5,\n            \"weight\": 0.2\n        },\n        \"_id\": \"6808ceaf3b68860e539c1134\",\n        \"sku\": \"PROD-TEST-001\",\n        \"productId\": \"EXT-TEST-001\",\n        \"name\": \"Тестовый смартфон\",\n        \"barcode\": \"4607123456000\",\n        \"category\": \"Электроника\",\n        \"createdAt\": \"2025-04-23T11:27:43.359Z\",\n        \"updatedAt\": \"2025-04-23T11:27:43.359Z\",\n        \"__v\": 0\n    },\n    {\n        \"dimensions\": {\n            \"length\": 15,\n            \"width\": 7.5,\n            \"height\": 1.5,\n            \"weight\": 0.2\n        },\n        \"_id\": \"680941d13b68860e539c12a1\",\n        \"sku\": \"1PROD-TEST-001\",\n        \"productId\": \"1EXT-TEST-001\",\n        \"name\": \"Тестовый смартфон\",\n        \"barcode\": \"114607123456000\",\n        \"category\": \"Электроника\",\n        \"createdAt\": \"2025-04-23T19:38:57.550Z\",\n        \"updatedAt\": \"2025-04-23T19:38:57.550Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68099aee3b68860e539c12a7\",\n        \"sku\": \"SKU-1745459950255-1\",\n        \"productId\": \"PROD-1745459950255-1\",\n        \"name\": \"Тестовый товар для заказа 1\",\n        \"barcode\": \"BAR-1745459950255-1\",\n        \"category\": \"Электроника\",\n        \"createdAt\": \"2025-04-24T01:59:10.711Z\",\n        \"updatedAt\": \"2025-04-24T01:59:10.711Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68099aee3b68860e539c12aa\",\n        \"sku\": \"SKU-1745459950255-2\",\n        \"productId\": \"PROD-1745459950255-2\",\n        \"name\": \"Тестовый товар для заказа 2\",\n        \"barcode\": \"BAR-1745459950255-2\",\n        \"category\": \"Одежда\",\n        \"createdAt\": \"2025-04-24T01:59:10.881Z\",\n        \"updatedAt\": \"2025-04-24T01:59:10.881Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"680aec903b68860e539c137d\",\n        \"sku\": \"SKU-1745546383828-1\",\n        \"productId\": \"PROD-1745546383828-1\",\n        \"name\": \"Тестовый товар для заказа 1\",\n        \"barcode\": \"BAR-1745546383828-1\",\n        \"category\": \"Электроника\",\n        \"createdAt\": \"2025-04-25T01:59:44.268Z\",\n        \"updatedAt\": \"2025-04-25T01:59:44.268Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"680aec903b68860e539c1380\",\n        \"sku\": \"SKU-1745546383828-2\",\n        \"productId\": \"PROD-1745546383828-2\",\n        \"name\": \"Тестовый товар для заказа 2\",\n        \"barcode\": \"BAR-1745546383828-2\",\n        \"category\": \"Одежда\",\n        \"createdAt\": \"2025-04-25T01:59:44.429Z\",\n        \"updatedAt\": \"2025-04-25T01:59:44.429Z\",\n        \"__v\": 0\n    }\n]"
+				},
+				{
+					"name": "Без авторизации",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-mock-response-code",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "<string>",
+									"description": "Фильтр по категории товаров",
+									"disabled": true
+								},
+								{
+									"key": "inStock",
+									"value": "<boolean>",
+									"description": "Фильтр по наличию товаров на складе (true - только товары в наличии)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Jul 2025 21:05:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-Lr80t3e3z5fppDE/+2+H1Fbu/9w\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Необходима авторизация\"\n}"
+				},
+				{
+					"name": "Ошибка сервера",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/products?category=<string>&inStock=<boolean>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "<string>",
+									"description": "Фильтр по категории товаров"
+								},
+								{
+									"key": "inStock",
+									"value": "<boolean>",
+									"description": "Фильтр по наличию товаров на складе (true - только товары в наличии)"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"Произошла непредвиденная ошибка на сервере\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Создать новый заказ",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let timestamp = new Date().getTime();",
+							"pm.collectionVariables.set('orderNumber', `ORD-${timestamp}`);",
+							"",
+							"let customer = {",
+							"    \"name\": \"Sergey\",",
+							"    \"address\": \"Cherepovets\",",
+							"    \"phone\": \"+79310000001\",",
+							"    \"email\": \"Qwerty@mail.ru\"  ",
+							"};",
+							"pm.collectionVariables.set('customer', JSON.stringify(customer));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.collectionVariables.set(\"orderId\", response._id);",
+							"console.log(`Создан заказ № ${response.orderNumber}`);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "x-mock-response-code",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"orderNumber\": \"{{orderNumber}}\",\n  \"items\": {{orderItems}},\n  \"externalOrderId\": \"123\",\n  \"customer\": {{customer}},\n  \"priority\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"headerFamily": "json",
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders"
+					]
+				},
+				"description": "## Создает новый заказ в системе с указанными товарами\n\nЭтот запрос используется для создания нового заказа в системе. Он отправляет информацию о заказе, включая номер заказа и список товаров.\n\n### Формат запроса\n\n**Метод:** POST  \n**URL:** `{{baseUrl}}/orders`\n\n**Тело запроса:**\n\n``` json\n{\n  \"orderNumber\": \"ORD-12345\",\n  \"externalOrderId\": \"EXT-12345\",\n  \"customer\": {\n    \"name\": \"Иван Иванов\",\n    \"address\": \"г. Москва, ул. Примерная, д.1\",\n    \"phone\": \"+7 999 123-45-67\",\n    \"email\": \"example@example.com\"\n  },\n  \"priority\": 1,\n  \"items\": [\n    {\n      \"sku\": \"PROD-001\",\n      \"quantity\": 2\n    }\n  ]\n}\n\n ```\n\n- `orderNumber` (строка): Уникальный номер заказа.\n    \n- `items` (объект): Содержит информацию о товарах в заказе. Ожидается, что это будет объект с деталями товаров.\n    \n\n### Структура ответа\n\nПри успешном выполнении запроса (статус 201) вы получите ответ в следующем формате:\n\n``` json\n{\n  \"_id\": \"60d21b4667d0d8992e610c85\",\n  \"orderNumber\": \"ORD-12345\",\n  \"externalOrderId\": \"EXT-12345\",\n  \"customer\": {\n    \"name\": \"Иван Иванов\",\n    \"address\": \"г. Москва, ул. Примерная, д. 1\",\n    \"phone\": \"+7 999 123-45-67\",\n    \"email\": \"example@example.com\"\n  },\n  \"status\": \"new\",\n  \"priority\": 1,\n  \"items\": [\n    {\n      \"productId\": \"60d21b4667d0d8992e610c86\",\n      \"sku\": \"PROD-001\",\n      \"name\": \"Смартфон XYZ\",\n      \"quantity\": 2,\n      \"pickedQuantity\": 0,\n      \"status\": \"pending\"\n    }\n  ],\n  \"createdAt\": \"2025-03-10T10:00:00Z\",\n  \"updatedAt\": \"2025-03-10T14:30:00Z\"\n}\n\n ```\n\n- `_id`: Уникальный идентификатор заказа.\n    \n- `orderNumber`: Номер заказа.\n    \n- `externalOrderId`: Внешний идентификатор заказа.\n    \n- `customer`: Информация о клиенте, включая имя, адрес, телефон и электронную почту.\n    \n- `status`: Статус заказа.\n    \n- `priority`: Приоритет заказа.\n    \n- `items`: Массив объектов, представляющих товары в заказе, каждый из которых содержит:\n    \n    - `productId`: Идентификатор продукта.\n        \n    - `sku`: Артикул товара.\n        \n    - `name`: Название товара.\n        \n    - `quantity`: Количество товара в заказе.\n        \n    - `pickedQuantity`: Количество товара, которое было выбрано.\n        \n    - `status`: Статус товара в заказе.\n        \n- `createdAt`: Дата и время создания заказа.\n    \n- `updatedAt`: Дата и время последнего обновления заказа."
+			},
+			"response": [
+				{
+					"name": "Заказ успешно создан",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-mock-response-code",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderNumber\": \"ORD-12345\",\n  \"externalOrderId\": \"EXT-12345\",\n  \"customer\": {\n    \"name\": \"Иван Иванов\",\n    \"address\": \"г. Москва, ул. Примерная, д.1\",\n    \"phone\": \"+7 999 123-45-67\",\n    \"email\": \"example@example.com\"\n  },\n  \"priority\": 1,\n  \"items\": [\n    {\n      \"sku\": \"PROD-001\",\n      \"quantity\": 2\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sklad.testerhub.ru/wms/v1/orders",
+							"protocol": "https",
+							"host": [
+								"sklad",
+								"testerhub",
+								"ru"
+							],
+							"path": [
+								"wms",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Jul 2025 21:16:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "741"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e5-HNkIs8CK+vvgGrIJKGl9UCu3jdA\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"_id\": \"60d21b4667d0d8992e610c85\",\n  \"orderNumber\": \"ORD-12345\",\n  \"externalOrderId\": \"EXT-12345\",\n  \"customer\": {\n    \"name\": \"Иван Иванов\",\n    \"address\": \"г. Москва, ул. Примерная, д. 1\",\n    \"phone\": \"+7 999 123-45-67\",\n    \"email\": \"example@example.com\"\n  },\n  \"status\": \"new\",\n  \"priority\": 1,\n  \"items\": [\n    {\n      \"productId\": \"60d21b4667d0d8992e610c86\",\n      \"sku\": \"PROD-001\",\n      \"name\": \"Смартфон XYZ\",\n      \"quantity\": 2,\n      \"pickedQuantity\": 0,\n      \"status\": \"pending\"\n    }\n  ],\n  \"createdAt\": \"2025-03-10T10:00:00Z\",\n  \"updatedAt\": \"2025-03-10T14:30:00Z\"\n}"
+				},
+				{
+					"name": "Неверные данные запроса",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderNumber\": \"ORD-12345\",\n  \"externalOrderId\": \"EXT-12345\",\n  \"customer\": {\n    \"name\": \"Иван Иванов\",\n    \"address\": \"г. Москва, ул. Примерная, д.1\",\n    \"phone\": \"+7 999 123-45-67\",\n    \"email\": \"example@example.com\"\n  },\n  \"priority\": 1,\n  \"items\": [\n    {\n      \"sku\": \"PROD-001\",\n      \"quantity\": 2\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sklad.testerhub.ru/wms/v1/orders",
+							"protocol": "https",
+							"host": [
+								"sklad",
+								"testerhub",
+								"ru"
+							],
+							"path": [
+								"wms",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"Неверный формат данных для поля\"\n}"
+				},
+				{
+					"name": "Ошибка сервера",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderNumber\": \"ORD-12345\",\n  \"externalOrderId\": \"EXT-12345\",\n  \"customer\": {\n    \"name\": \"Иван Иванов\",\n    \"address\": \"г. Москва, ул. Примерная, д.1\",\n    \"phone\": \"+7 999 123-45-67\",\n    \"email\": \"example@example.com\"\n  },\n  \"priority\": 1,\n  \"items\": [\n    {\n      \"sku\": \"PROD-001\",\n      \"quantity\": 2\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"Произошла непредвиденная ошибка на сервере\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Резервировать товары для заказа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//console.log(\"Товары успешно зарезервирваны\");",
+							"",
+							"pm.test(\"Статус 200\", function() {",
+							"    if (pm.response.code === 200) {",
+							"        console.log(\"Товары успешно зарезервирваны\");",
+							"    } else {",
+							"        console.log(\"Товары не зарезервирваны\");",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "x-mock-response-code",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/orders/:id/reserve",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":id",
+						"reserve"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{orderId}}",
+							"description": "(Required) ID заказа"
+						}
+					]
+				},
+				"description": "### Описание запроса\n\nЭтот запрос используется для резервирования товаров на складе для выполнения конкретного заказа.\n\n### Цель запроса\n\nРезервировать товары, связанные с указанным заказом, чтобы обеспечить их доступность для последующей обработки и доставки.\n\n### Ожидаемые входные параметры\n\n- **id** (параметр URL): Уникальный идентификатор заказа, для которого необходимо зарезервировать товары.\n    \n\n### Структура ответа\n\nПри успешном выполнении запроса возвращается статус 200 и следующий JSON-объект:\n\n``` json\n{\n  \"message\": \"Items reserved successfully\",\n  \"order\": {\n    \"_id\": \"60d21b4667d0d8992e610c85\",\n    \"orderNumber\": \"ORD-12345\",\n    \"externalOrderId\": \"EXT-12345\",\n    \"customer\": {\n      \"name\": \"Иван Иванов\",\n      \"address\": \"г. Москва, ул. Примерная, д. 1\",\n      \"phone\": \"+7 999 123-45-67\",\n      \"email\": \"example@example.com\"\n    },\n    \"status\": \"new\",\n    \"priority\": 1,\n    \"items\": [\n      {\n        \"productId\": \"60d21b4667d0d8992e610c86\",\n        \"sku\": \"PROD-001\",\n        \"name\": \"Смартфон XYZ\",\n        \"quantity\": 2,\n        \"pickedQuantity\": 0,\n        \"status\": \"pending\"\n      }\n    ],\n    \"createdAt\": \"2025-03-10T10:00:00Z\",\n    \"updatedAt\": \"2025-03-10T14:30:00Z\"\n  },\n  \"items\": [\n    {\n      \"sku\": \"PROD-001\",\n      \"required\": 2,\n      \"available\": 10,\n      \"status\": \"reserved\"\n    }\n  ]\n}\n\n ```\n\n- **message**: Сообщение, связанное с выполнением запроса.\n    \n- **order**: Объект, представляющий информацию о заказе, включая:\n    \n    - **_id**: Уникальный идентификатор заказа.\n        \n    - **orderNumber**: Номер заказа.\n        \n    - **externalOrderId**: Внешний идентификатор заказа.\n        \n    - **customer**: Информация о клиенте, включая имя, адрес, телефон и email.\n        \n    - **status**: Текущий статус заказа.\n        \n    - **priority**: Приоритет заказа.\n        \n    - **items**: Список товаров в заказе с их деталями.\n        \n    - **createdAt**: Дата создания заказа.\n        \n    - **updatedAt**: Дата последнего обновления заказа.\n        \n- **items**: Список товаров, которые были зарезервированы, с их статусом и доступностью.\n    \n\n### Возможные ошибки\n\nПри выполнении запроса может быть возвращен статус 400 с сообщением об ошибке в формате JSON:\n\n``` json\n{\n  \"error\": \"Insufficient inventory for some items\",\n  \"items\": [\n    {\n      \"sku\": \"string\",\n      \"required\": 0,\n      \"available\": 0,\n      \"status\": \"insufficient\"\n    }\n  ]\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "Товары успешно зарезервированы",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"url": {
+							"raw": "https://sklad.testerhub.ru/wms/v1/orders/:id/reserve",
+							"protocol": "https",
+							"host": [
+								"sklad",
+								"testerhub",
+								"ru"
+							],
+							"path": [
+								"wms",
+								"v1",
+								"orders",
+								":id",
+								"reserve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "(Required) ID заказа"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"message\": \"Items reserved successfully\",\n  \"order\": {\n    \"_id\": \"60d21b4667d0d8992e610c85\",\n    \"orderNumber\": \"ORD-12345\",\n    \"externalOrderId\": \"EXT-12345\",\n    \"customer\": {\n      \"name\": \"Иван Иванов\",\n      \"address\": \"г. Москва, ул. Примерная, д. 1\",\n      \"phone\": \"+7 999 123-45-67\",\n      \"email\": \"example@example.com\"\n    },\n    \"status\": \"new\",\n    \"priority\": 1,\n    \"items\": [\n      {\n        \"productId\": \"60d21b4667d0d8992e610c86\",\n        \"sku\": \"PROD-001\",\n        \"name\": \"Смартфон XYZ\",\n        \"quantity\": 2,\n        \"pickedQuantity\": 0,\n        \"status\": \"pending\"\n      }\n    ],\n    \"createdAt\": \"2025-03-10T10:00:00Z\",\n    \"updatedAt\": \"2025-03-10T14:30:00Z\"\n  },\n  \"items\": [\n    {\n      \"sku\": \"PROD-001\",\n      \"required\": 2,\n      \"available\": 10,\n      \"status\": \"reserved\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Ошибка резервирования или недостаточно товаров",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:id/reserve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":id",
+								"reserve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "(Required) ID заказа"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"Insufficient inventory for some items\",\n  \"items\": [\n    {\n      \"sku\": \"string\",\n      \"required\": 0,\n      \"available\": 0,\n      \"status\": \"insufficient\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Заказ не найден",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:id/reserve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":id",
+								"reserve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "(Required) ID заказа"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"Location not found\"\n}"
+				},
+				{
+					"name": "Ошибка сервера",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"description": "Added as a part of security scheme: bearer"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:id/reserve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":id",
+								"reserve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "(Required) ID заказа"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"Произошла непредвиденная ошибка на сервере\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "orderItems",
+			"value": ""
+		},
+		{
+			"key": "orderNumber",
+			"value": ""
+		},
+		{
+			"key": "orderId",
+			"value": ""
+		},
+		{
+			"key": "customer",
+			"value": ""
+		},
+		{
+			"key": "null",
+			"value": ""
+		}
+	]
+}
