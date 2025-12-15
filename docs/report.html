@@ -472,7 +472,7 @@ body.theme-light code {
                 <a class="nav-link text-white" id="pills-requests-tab" data-toggle="pill" href="#pills-requests" role="tab" aria-controls="pills-requests" aria-selected="false">Total Requests <span class="badge badge-light">4</span></a>
             </li>
             <li class="nav-item bg-danger" data-toggle="tooltip" title="Click to view the Failed Tests">
-                <a class="nav-link text-white" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed Tests <span class="badge badge-light">0</span></a>
+                <a class="nav-link text-white" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed Tests <span class="badge badge-light">7</span></a>
             </li>
             <li class="nav-item bg-warning" data-toggle="tooltip" title="Click to view the Skipped Tests">
                 <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">0</span></a>
@@ -483,11 +483,11 @@ body.theme-light code {
 <div class="row">
   <div class="col-md-9 col-lg-12 main">
    <h1 class="display-2 text-center">Newman Run Dashboard</h1>
-   <h5 class="text-center">Sunday, 14 December 2025 03:57:09</h5>
+   <h5 class="text-center">Monday, 15 December 2025 04:10:35</h5>
    <div class="row">
     <div class="col-lg-3 col-md-6">
      <div class="card text-white card-success">
-      <div class="card-body bg-success">
+      <div class="card-body bg-danger">
        <div class="rotate">
         <i class="fa fa-retweet fa-5x"></i>
        </div>
@@ -503,18 +503,18 @@ body.theme-light code {
         <i class="fa fa-list fa-4x"></i>
        </div>
        <h6 class="text-uppercase">Total Assertions</h6>
-       <h1 class="display-1">8</h1>
+       <h1 class="display-1">1</h1>
       </div>
      </div>
     </div>
     <div class="col-lg-3 col-md-6">
      <div class="card text-white card-info">
-      <div class="card-body bg-success">
+      <div class="card-body bg-danger">
        <div class="rotate">
         <i class="fa fa-plus-circle fa-5x"></i>
        </div>
        <h6 class="text-uppercase">Total Failed Tests</h6>
-       <h1 class="display-1">0</h1>
+       <h1 class="display-1">7</h1>
       </div>
      </div>
     </div>
@@ -582,9 +582,9 @@ body.theme-light code {
             <div class="card border-info">
                 <div class="card-body">
                 <h5 class="card-title text-uppercase text-white text-center bg-info">Timings and Data</h5>
-                <span><i class="fas fa-stopwatch"></i></span><strong> Total run duration:</strong> 2.7s<br>
-                <span><i class="fas fa-database"></i></span><strong> Total data received:</strong> 30.41KB<br>
-                <span><i class="fas fa-stopwatch"></i></span><strong> Average response time:</strong> 652ms<br>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Total run duration:</strong> 8m 58.6s<br>
+                <span><i class="fas fa-database"></i></span><strong> Total data received:</strong> 0B<br>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Average response time:</strong> 0ms<br>
                 </div>
             </div>
         </div>
@@ -604,7 +604,7 @@ body.theme-light code {
                     <tr>
                         <td>Requests</td>
                         <td class="text-center">4</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">4</td>
                     </tr>
                     <tr>
                         <td>Prerequest Scripts</td>
@@ -614,11 +614,11 @@ body.theme-light code {
                     <tr>
                         <td>Test Scripts</td>
                         <td class="text-center">8</td>
-                        <td class="text-center">0</td>
+                        <td class="text-center">3</td>
                     </tr>
-                    <tr class="">
+                    <tr class="table-danger">
                         <td>Assertions</td>
-                        <td class="text-center">8</td>
+                        <td class="text-center">1</td>
                         <td class="text-center">0</td>
                     </tr>
                     <tr class="">
@@ -640,9 +640,162 @@ body.theme-light code {
             <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
                 <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
 
-                <div class="alert alert-success text-uppercase text-center">
-                     <br><br><h1 class="text-center">There are no failed tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
-                </div>
+                    <div class="btn-group float-right" role="group" aria-label="Button Group">
+                        <button id="openAllFailed" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Failed Tests</button>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="alert alert-danger text-uppercase text-center">
+                        <h4>Showing 7 Failures</h4>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-d30f334a-52dc-4a46-9722-0b808fb877f4" aria-expanded="false" aria-controls="collapse" id="fails-d30f334a-52dc-4a46-9722-0b808fb877f4" class="collapsed text-white z-block">
+                                    Iteration 1 - Error -  - Авторизация пользователя <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-d30f334a-52dc-4a46-9722-0b808fb877f4" class="collapse" aria-labelledby="fails-d30f334a-52dc-4a46-9722-0b808fb877f4">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >connect ETIMEDOUT 37.46.129.245:443</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-af7bb356-ed97-4cf8-8781-2276e6c47427" aria-expanded="false" aria-controls="collapse" id="fails-af7bb356-ed97-4cf8-8781-2276e6c47427" class="collapsed text-white z-block">
+                                    Iteration 1 - JSONError - Создание заказа - Авторизация пользователя <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-af7bb356-ed97-4cf8-8781-2276e6c47427" class="collapse" aria-labelledby="fails-af7bb356-ed97-4cf8-8781-2276e6c47427">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >Unexpected token u in JSON at position 0</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-6d271927-f5d2-4b50-85a8-23a719a75abb" aria-expanded="false" aria-controls="collapse" id="fails-6d271927-f5d2-4b50-85a8-23a719a75abb" class="collapsed text-white z-block">
+                                    Iteration 1 - Error -  - Получить список товаров <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-6d271927-f5d2-4b50-85a8-23a719a75abb" class="collapse" aria-labelledby="fails-6d271927-f5d2-4b50-85a8-23a719a75abb">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >connect ETIMEDOUT 37.46.129.245:443</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-3ce791e6-398f-4c21-8453-fc58f980cc09" aria-expanded="false" aria-controls="collapse" id="fails-3ce791e6-398f-4c21-8453-fc58f980cc09" class="collapsed text-white z-block">
+                                    Iteration 1 - JSONError - Создание заказа - Получить список товаров <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-3ce791e6-398f-4c21-8453-fc58f980cc09" class="collapse" aria-labelledby="fails-3ce791e6-398f-4c21-8453-fc58f980cc09">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >Unexpected token u in JSON at position 0</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-cc437d27-cab0-4dab-9ed2-e7dbaf48a792" aria-expanded="false" aria-controls="collapse" id="fails-cc437d27-cab0-4dab-9ed2-e7dbaf48a792" class="collapsed text-white z-block">
+                                    Iteration 1 - Error -  - Создать новый заказ <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-cc437d27-cab0-4dab-9ed2-e7dbaf48a792" class="collapse" aria-labelledby="fails-cc437d27-cab0-4dab-9ed2-e7dbaf48a792">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >connect ETIMEDOUT 37.46.129.245:443</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-182e4de9-c915-4e0c-b57c-42dcf9aeb620" aria-expanded="false" aria-controls="collapse" id="fails-182e4de9-c915-4e0c-b57c-42dcf9aeb620" class="collapsed text-white z-block">
+                                    Iteration 1 - JSONError - Создание заказа - Создать новый заказ <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-182e4de9-c915-4e0c-b57c-42dcf9aeb620" class="collapse" aria-labelledby="fails-182e4de9-c915-4e0c-b57c-42dcf9aeb620">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >Unexpected token u in JSON at position 0</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-4143752d-a739-4be5-9f55-e25c41cf7baf" aria-expanded="false" aria-controls="collapse" id="fails-4143752d-a739-4be5-9f55-e25c41cf7baf" class="collapsed text-white z-block">
+                                    Iteration 1 - Error -  - Резервировать товары для заказа <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-4143752d-a739-4be5-9f55-e25c41cf7baf" class="collapse" aria-labelledby="fails-4143752d-a739-4be5-9f55-e25c41cf7baf">
+                            <div class="card-body">
+                                <h5 ><strong>Failed Test:</strong> </h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code >connect ETIMEDOUT 37.46.129.245:443</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
 
             <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
@@ -657,6 +810,7 @@ body.theme-light code {
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
 
             <div class="btn-group float-right" role="group" aria-label="Button Group">
+                <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width:160px;">Show Failed Iterations</button>
                 <button id="openAll" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Folders</button>
                 <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Requests</button>
             </div>
@@ -671,16 +825,16 @@ body.theme-light code {
     </div>
     <h6 class="text-uppercase text-muted" id="iterationSelected" style="padding-top: 10px;"></h6>
 	<div class="tab-content" id="execution-data">
-            <div id="folder-082fae29-7885-4c49-8797-f814f6960be0" class="card-deck iteration-0">
+            <div id="folder-72523ecb-59a2-4995-9c0e-a815bbe22937" class="card-deck iteration-0">
             <div class="row iteration-0">
                 <div class="col-sm-12 mb-3 iteration-0">
                 <div class="card iteration-0">
                     <div class="card-header  bg-success iteration-0">
-                        <a data-toggle="collapse" href="#" data-target="#collapse-082fae29-7885-4c49-8797-f814f6960be0" aria-expanded="false" aria-controls="collapse" id="requests-082fae29-7885-4c49-8797-f814f6960be0" class="collapsed text-white z-block">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-72523ecb-59a2-4995-9c0e-a815bbe22937" aria-expanded="false" aria-controls="collapse" id="requests-72523ecb-59a2-4995-9c0e-a815bbe22937" class="collapsed text-white z-block">
                     Iteration: 1 - Авторизация пользователя <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
                 </a>
                     </div>
-                    <div id="collapse-082fae29-7885-4c49-8797-f814f6960be0" class="collapse" aria-labelledby="requests-082fae29-7885-4c49-8797-f814f6960be0">
+                    <div id="collapse-72523ecb-59a2-4995-9c0e-a815bbe22937" class="collapse" aria-labelledby="requests-72523ecb-59a2-4995-9c0e-a815bbe22937">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 mb-3">
@@ -765,15 +919,15 @@ body.theme-light code {
                                 <div class="card border-info" style="width: 50rem;">
                                     <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
-                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
-                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 1850ms</span><br>
-                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 388B</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success">  - </span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 0ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 0B</span><br>
                                     <hr>
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
                                     <div>
                                         <div class="progress" style="height: 40px;">
-                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
-                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            <div class="progress-bar bg-success" style="width: 100%" role="progressbar">
+                                            <h5 class="text-uppercase text-white text-center" style="padding-top:5px;"><strong>No Tests for this request</strong></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -818,7 +972,7 @@ body.theme-light code {
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Postman-Token</td>
-                                                        <td class="text-wrap">07b89b14-7cd9-4f8b-b82e-da5acbb5127a</td>
+                                                        <td class="text-wrap">ea765e1e-9e8f-42d0-818c-5bf58ecb03ac</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Host</td>
@@ -831,10 +985,6 @@ body.theme-light code {
                                                     <tr>
                                                         <td class="text-nowrap">Connection</td>
                                                         <td class="text-wrap">keep-alive</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-nowrap">Content-Length</td>
-                                                        <td class="text-wrap">60</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -870,41 +1020,6 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-nowrap">Server</td>
-                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Date</td>
-                                                    <td class="text-wrap">Sun, 14 Dec 2025 03:57:08 GMT</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Type</td>
-                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Length</td>
-                                                    <td class="text-wrap">388</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Connection</td>
-                                                    <td class="text-wrap">keep-alive</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">X-Powered-By</td>
-                                                    <td class="text-wrap">Express</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">ETag</td>
-                                                    <td class="text-wrap">W/&quot;184-9aCOXqFpiL1Imk0YG+TFyHPRGRU&quot;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -916,12 +1031,7 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
-                                        <div class="dyn-height">
-                                                <pre><code id="copyText-bc2cf596-f806-4375-a69b-3739e86084f0" class="prettyPrint">{&quot;message&quot;:&quot;Авторизация успешна&quot;,&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NjU2ODQ2MjgsImV4cCI6MTc2NTc3MTAyOH0.JskRto4YO1oZUSKh5ML8z18eh4d_r13Nw7eazFjxokA&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;680caa170a44bf689b95078f&quot;,&quot;username&quot;:&quot;Sergey&quot;,&quot;email&quot;:&quot;qwerty@mail.ru&quot;,&quot;role&quot;:&quot;worker&quot;}}</code></pre>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-bc2cf596-f806-4375-a69b-3739e86084f0">Copy to Clipboard</button>
-                                        </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Response Body for this request</h5>
                                 </div>
                             </div>
                             </div>
@@ -931,69 +1041,7 @@ body.theme-light code {
                             <div class="card border-info">
                                 <div class="card-body">
                                 <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
-                                    <div class="table-responsive text-nowrap">
-                                        <table class="datatable table table-hover">
-                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
-                                            <tbody>
-                                                <tr >
-                                                    <td >Response status code is 200</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                                <tr >
-                                                    <td >Response contains required fields</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                                <tr >
-                                                    <td >Response contains valid user object fields</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                                <tr >
-                                                    <td >Token is a non-empty string</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                                <tr >
-                                                    <td >Email must be in a valid format</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr class="bg-light">
-                                                    <td><strong>Total</strong></td>
-                                                    <td class="text-center">5</td>
-                                                    <td class="text-center">0</td>
-                                                    <td class="text-center">0</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <div class="row d-none">
-                                    <div class="col-sm-12 mb-3">
-                                        <div class="card-deck">
-                                        <div class="card border-danger" style="width: 50rem;">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
-                                                <div class="table-responsive">
-                                                    <table class="table table-hover">
-                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Tests for this request</h5>
                                 </div>
                             </div>
                         </div>
@@ -1003,16 +1051,16 @@ body.theme-light code {
                 </div>
             </div>
             </div>
-            <div id="folder-a4b35e19-0f5b-4b84-821b-2e1cfdec3135" class="card-deck iteration-0">
+            <div id="folder-f774cf16-0c89-43a1-ae92-cb1b58a69c45" class="card-deck iteration-0">
             <div class="row iteration-0">
                 <div class="col-sm-12 mb-3 iteration-0">
                 <div class="card iteration-0">
                     <div class="card-header  bg-success iteration-0">
-                        <a data-toggle="collapse" href="#" data-target="#collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135" aria-expanded="false" aria-controls="collapse" id="requests-a4b35e19-0f5b-4b84-821b-2e1cfdec3135" class="collapsed text-white z-block">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45" aria-expanded="false" aria-controls="collapse" id="requests-f774cf16-0c89-43a1-ae92-cb1b58a69c45" class="collapsed text-white z-block">
                     Iteration: 1 - Получить список товаров <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
                 </a>
                     </div>
-                    <div id="collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135" class="collapse" aria-labelledby="requests-a4b35e19-0f5b-4b84-821b-2e1cfdec3135">
+                    <div id="collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45" class="collapse" aria-labelledby="requests-f774cf16-0c89-43a1-ae92-cb1b58a69c45">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 mb-3">
@@ -1089,15 +1137,15 @@ body.theme-light code {
                                 <div class="card border-info" style="width: 50rem;">
                                     <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
-                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
-                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 373ms</span><br>
-                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 28.36KB</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success">  - </span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 0ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 0B</span><br>
                                     <hr>
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
                                     <div>
                                         <div class="progress" style="height: 40px;">
-                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
-                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            <div class="progress-bar bg-success" style="width: 100%" role="progressbar">
+                                            <h5 class="text-uppercase text-white text-center" style="padding-top:5px;"><strong>No Tests for this request</strong></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -1125,10 +1173,6 @@ body.theme-light code {
                                                         <td class="text-wrap"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="text-nowrap">Authorization</td>
-                                                        <td class="text-wrap">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NjU2ODQ2MjgsImV4cCI6MTc2NTc3MTAyOH0.JskRto4YO1oZUSKh5ML8z18eh4d_r13Nw7eazFjxokA</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td class="text-nowrap">User-Agent</td>
                                                         <td class="text-wrap">PostmanRuntime/7.39.1</td>
                                                     </tr>
@@ -1138,7 +1182,7 @@ body.theme-light code {
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Postman-Token</td>
-                                                        <td class="text-wrap">f584ba1a-7bab-4ded-8e53-51316ff77700</td>
+                                                        <td class="text-wrap">dfe0e8a6-2422-4a73-8ae8-fd9ac7c64020</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Host</td>
@@ -1166,41 +1210,6 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-nowrap">Server</td>
-                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Date</td>
-                                                    <td class="text-wrap">Sun, 14 Dec 2025 03:57:08 GMT</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Type</td>
-                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Length</td>
-                                                    <td class="text-wrap">29044</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Connection</td>
-                                                    <td class="text-wrap">keep-alive</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">X-Powered-By</td>
-                                                    <td class="text-wrap">Express</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">ETag</td>
-                                                    <td class="text-wrap">W/&quot;7174-LJmmK1MSZcNt9MFVjfFOtDu9J64&quot;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -1212,12 +1221,7 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
-                                        <div class="dyn-height">
-                                                <pre><code id="copyText-1eea2ec2-714b-4b14-8d40-e3490d9cdcb6" class="prettyPrint">[{&quot;_id&quot;:&quot;67fbba5e3b68860e539c02e3&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;productId&quot;:&quot;PROD-1744550494284-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744550494284-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T13:21:34.949Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T13:21:34.949Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbba5f3b68860e539c02e6&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;productId&quot;:&quot;PROD-1744550494284-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744550494284-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T13:21:35.074Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T13:21:35.074Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbd6593b68860e539c0329&quot;,&quot;sku&quot;:&quot;SKU-1744557657004-1&quot;,&quot;productId&quot;:&quot;PROD-1744557657004-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744557657004-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T15:20:57.458Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T15:20:57.459Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbd6593b68860e539c032c&quot;,&quot;sku&quot;:&quot;SKU-1744557657004-2&quot;,&quot;productId&quot;:&quot;PROD-1744557657004-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744557657004-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T15:20:57.615Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T15:20:57.615Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe2643b68860e539c0379&quot;,&quot;sku&quot;:&quot;SKU-1744560740340-1&quot;,&quot;productId&quot;:&quot;PROD-1744560740340-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744560740340-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:12:20.741Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:12:20.741Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe2643b68860e539c037c&quot;,&quot;sku&quot;:&quot;SKU-1744560740340-2&quot;,&quot;productId&quot;:&quot;PROD-1744560740340-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744560740340-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:12:20.891Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:12:20.891Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe3df3b68860e539c03cb&quot;,&quot;sku&quot;:&quot;SKU-1744561118722-1&quot;,&quot;productId&quot;:&quot;PROD-1744561118722-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744561118722-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:18:39.147Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:18:39.147Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe3df3b68860e539c03ce&quot;,&quot;sku&quot;:&quot;SKU-1744561118722-2&quot;,&quot;productId&quot;:&quot;PROD-1744561118722-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744561118722-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:18:39.308Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:18:39.308Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe66b3b68860e539c0423&quot;,&quot;sku&quot;:&quot;SKU-1744561771042-1&quot;,&quot;productId&quot;:&quot;PROD-1744561771042-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744561771042-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:31.441Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:31.441Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe66b3b68860e539c0426&quot;,&quot;sku&quot;:&quot;SKU-1744561771042-2&quot;,&quot;productId&quot;:&quot;PROD-1744561771042-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744561771042-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:31.590Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:31.590Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe6813b68860e539c0487&quot;,&quot;sku&quot;:&quot;SKU-001&quot;,&quot;productId&quot;:&quot;PROD-001&quot;,&quot;name&quot;:&quot;Тестовый товар 1&quot;,&quot;barcode&quot;:&quot;BARCODE-001&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:53.259Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:53.260Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe6813b68860e539c048a&quot;,&quot;sku&quot;:&quot;SKU-002&quot;,&quot;productId&quot;:&quot;PROD-002&quot;,&quot;name&quot;:&quot;Тестовый товар 2&quot;,&quot;barcode&quot;:&quot;BARCODE-002&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:29:53.265Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:29:53.265Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe7173b68860e539c04b0&quot;,&quot;sku&quot;:&quot;SKU-1744561942891-1&quot;,&quot;productId&quot;:&quot;PROD-1744561942891-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744561942891-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:32:23.291Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:32:23.291Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbe7173b68860e539c04b3&quot;,&quot;sku&quot;:&quot;SKU-1744561942891-2&quot;,&quot;productId&quot;:&quot;PROD-1744561942891-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744561942891-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T16:32:23.441Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T16:32:23.441Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbf8ea3b68860e539c052e&quot;,&quot;sku&quot;:&quot;SKU-1744566506160-1&quot;,&quot;productId&quot;:&quot;PROD-1744566506160-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744566506160-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T17:48:26.626Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T17:48:26.626Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fbf8ea3b68860e539c0531&quot;,&quot;sku&quot;:&quot;SKU-1744566506160-2&quot;,&quot;productId&quot;:&quot;PROD-1744566506160-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744566506160-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T17:48:26.805Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T17:48:26.805Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc007b3b68860e539c05b2&quot;,&quot;sku&quot;:&quot;SKU-1744568442943-1&quot;,&quot;productId&quot;:&quot;PROD-1744568442943-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744568442943-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:20:43.358Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:20:43.358Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc007b3b68860e539c05b5&quot;,&quot;sku&quot;:&quot;SKU-1744568442943-2&quot;,&quot;productId&quot;:&quot;PROD-1744568442943-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744568442943-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:20:43.510Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:20:43.511Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc031e3b68860e539c0622&quot;,&quot;sku&quot;:&quot;SKU-1744569118255-1&quot;,&quot;productId&quot;:&quot;PROD-1744569118255-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744569118255-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:31:58.840Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:31:58.840Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc031f3b68860e539c0625&quot;,&quot;sku&quot;:&quot;SKU-1744569118255-2&quot;,&quot;productId&quot;:&quot;PROD-1744569118255-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744569118255-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:31:59.066Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:31:59.066Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc04493b68860e539c06a5&quot;,&quot;sku&quot;:&quot;SKU-1744569416922-1&quot;,&quot;productId&quot;:&quot;PROD-1744569416922-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744569416922-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:36:57.489Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:36:57.489Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc04493b68860e539c06a8&quot;,&quot;sku&quot;:&quot;SKU-1744569416922-2&quot;,&quot;productId&quot;:&quot;PROD-1744569416922-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744569416922-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T18:36:57.705Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T18:36:57.705Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc0f3a3b68860e539c072e&quot;,&quot;sku&quot;:&quot;SKU-1744572217782-1&quot;,&quot;productId&quot;:&quot;PROD-1744572217782-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744572217782-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:23:38.255Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:23:38.255Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc0f3a3b68860e539c0731&quot;,&quot;sku&quot;:&quot;SKU-1744572217782-2&quot;,&quot;productId&quot;:&quot;PROD-1744572217782-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744572217782-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:23:38.426Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:23:38.426Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc17b93b68860e539c07bd&quot;,&quot;sku&quot;:&quot;SKU-1744574392775-1&quot;,&quot;productId&quot;:&quot;PROD-1744574392775-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744574392775-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:59:53.224Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:59:53.224Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc17b93b68860e539c07c0&quot;,&quot;sku&quot;:&quot;SKU-1744574392775-2&quot;,&quot;productId&quot;:&quot;PROD-1744574392775-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744574392775-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T19:59:53.394Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T19:59:53.394Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc1d0e3b68860e539c085f&quot;,&quot;sku&quot;:&quot;SKU-1744575757616-1&quot;,&quot;productId&quot;:&quot;PROD-1744575757616-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744575757616-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:22:38.071Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:22:38.071Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc1d0e3b68860e539c0862&quot;,&quot;sku&quot;:&quot;SKU-1744575757616-2&quot;,&quot;productId&quot;:&quot;PROD-1744575757616-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744575757616-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:22:38.243Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:22:38.243Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc25913b68860e539c08ed&quot;,&quot;sku&quot;:&quot;SKU-1744577936906-1&quot;,&quot;productId&quot;:&quot;PROD-1744577936906-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744577936906-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:58:57.327Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:58:57.327Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fc25913b68860e539c08f0&quot;,&quot;sku&quot;:&quot;SKU-1744577936906-2&quot;,&quot;productId&quot;:&quot;PROD-1744577936906-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744577936906-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-13T20:58:57.486Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-13T20:58:57.486Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fcaf4c3b68860e539c0981&quot;,&quot;sku&quot;:&quot;SKU-1744613196463-1&quot;,&quot;productId&quot;:&quot;PROD-1744613196463-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744613196463-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-14T06:46:36.947Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-14T06:46:36.947Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fcaf4d3b68860e539c0984&quot;,&quot;sku&quot;:&quot;SKU-1744613196463-2&quot;,&quot;productId&quot;:&quot;PROD-1744613196463-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744613196463-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-14T06:46:37.124Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-14T06:46:37.124Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fdbd7a3b68860e539c0a28&quot;,&quot;sku&quot;:&quot;SKU-1744682362324-1&quot;,&quot;productId&quot;:&quot;PROD-1744682362324-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744682362324-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-15T01:59:22.923Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-15T01:59:22.923Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67fdbd7b3b68860e539c0a2b&quot;,&quot;sku&quot;:&quot;SKU-1744682362324-2&quot;,&quot;productId&quot;:&quot;PROD-1744682362324-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744682362324-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-15T01:59:23.148Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-15T01:59:23.148Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67ff0ee13b68860e539c0ac8&quot;,&quot;sku&quot;:&quot;SKU-1744768736631-1&quot;,&quot;productId&quot;:&quot;PROD-1744768736631-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744768736631-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-16T01:58:57.054Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-16T01:58:57.054Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;67ff0ee13b68860e539c0acb&quot;,&quot;sku&quot;:&quot;SKU-1744768736631-2&quot;,&quot;productId&quot;:&quot;PROD-1744768736631-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744768736631-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-16T01:58:57.210Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-16T01:58:57.210Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68005ff63b68860e539c0b6e&quot;,&quot;sku&quot;:&quot;SKU-1744855029739-1&quot;,&quot;productId&quot;:&quot;PROD-1744855029739-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744855029739-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-17T01:57:10.196Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-17T01:57:10.196Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68005ff63b68860e539c0b71&quot;,&quot;sku&quot;:&quot;SKU-1744855029739-2&quot;,&quot;productId&quot;:&quot;PROD-1744855029739-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744855029739-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-17T01:57:10.368Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-17T01:57:10.368Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6801b0d13b68860e539c0c1a&quot;,&quot;sku&quot;:&quot;SKU-1744941264919-1&quot;,&quot;productId&quot;:&quot;PROD-1744941264919-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1744941264919-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-18T01:54:25.509Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-18T01:54:25.509Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6801b0d13b68860e539c0c1d&quot;,&quot;sku&quot;:&quot;SKU-1744941264919-2&quot;,&quot;productId&quot;:&quot;PROD-1744941264919-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1744941264919-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-18T01:54:25.735Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-18T01:54:25.735Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680301ea3b68860e539c0ccc&quot;,&quot;sku&quot;:&quot;SKU-1745027561884-1&quot;,&quot;productId&quot;:&quot;PROD-1745027561884-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745027561884-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-19T01:52:42.335Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-19T01:52:42.335Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680301ea3b68860e539c0ccf&quot;,&quot;sku&quot;:&quot;SKU-1745027561884-2&quot;,&quot;productId&quot;:&quot;PROD-1745027561884-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745027561884-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-19T01:52:42.486Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-19T01:52:42.486Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6804561f3b68860e539c0d84&quot;,&quot;sku&quot;:&quot;SKU-1745114655253-1&quot;,&quot;productId&quot;:&quot;PROD-1745114655253-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745114655253-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-20T02:04:15.832Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-20T02:04:15.832Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680456203b68860e539c0d87&quot;,&quot;sku&quot;:&quot;SKU-1745114655253-2&quot;,&quot;productId&quot;:&quot;PROD-1745114655253-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745114655253-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-20T02:04:16.059Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-20T02:04:16.059Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6805a7613b68860e539c0e43&quot;,&quot;sku&quot;:&quot;SKU-1745200993324-1&quot;,&quot;productId&quot;:&quot;PROD-1745200993324-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745200993324-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-21T02:03:13.911Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-21T02:03:13.911Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6805a7623b68860e539c0e46&quot;,&quot;sku&quot;:&quot;SKU-1745200993324-2&quot;,&quot;productId&quot;:&quot;PROD-1745200993324-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745200993324-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-21T02:03:14.131Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-21T02:03:14.131Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6806f7b03b68860e539c0f36&quot;,&quot;sku&quot;:&quot;SKU-1745287087736-1&quot;,&quot;productId&quot;:&quot;PROD-1745287087736-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745287087736-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-22T01:58:08.157Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-22T01:58:08.157Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6806f7b03b68860e539c0f39&quot;,&quot;sku&quot;:&quot;SKU-1745287087736-2&quot;,&quot;productId&quot;:&quot;PROD-1745287087736-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745287087736-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-22T01:58:08.334Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-22T01:58:08.334Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6808494c3b68860e539c1000&quot;,&quot;sku&quot;:&quot;SKU-1745373516376-1&quot;,&quot;productId&quot;:&quot;PROD-1745373516376-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745373516376-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-23T01:58:36.809Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T01:58:36.809Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6808494c3b68860e539c1003&quot;,&quot;sku&quot;:&quot;SKU-1745373516376-2&quot;,&quot;productId&quot;:&quot;PROD-1745373516376-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745373516376-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-23T01:58:36.965Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T01:58:36.965Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6808ceaf3b68860e539c1134&quot;,&quot;sku&quot;:&quot;PROD-TEST-001&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-23T11:27:43.359Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T11:27:43.359Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680941d13b68860e539c12a1&quot;,&quot;sku&quot;:&quot;1PROD-TEST-001&quot;,&quot;productId&quot;:&quot;1EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;114607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-23T19:38:57.550Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-23T19:38:57.550Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68099aee3b68860e539c12a7&quot;,&quot;sku&quot;:&quot;SKU-1745459950255-1&quot;,&quot;productId&quot;:&quot;PROD-1745459950255-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745459950255-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-24T01:59:10.711Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-24T01:59:10.711Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68099aee3b68860e539c12aa&quot;,&quot;sku&quot;:&quot;SKU-1745459950255-2&quot;,&quot;productId&quot;:&quot;PROD-1745459950255-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745459950255-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-24T01:59:10.881Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-24T01:59:10.881Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680aec903b68860e539c137d&quot;,&quot;sku&quot;:&quot;SKU-1745546383828-1&quot;,&quot;productId&quot;:&quot;PROD-1745546383828-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;barcode&quot;:&quot;BAR-1745546383828-1&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-25T01:59:44.268Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-25T01:59:44.268Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680aec903b68860e539c1380&quot;,&quot;sku&quot;:&quot;SKU-1745546383828-2&quot;,&quot;productId&quot;:&quot;PROD-1745546383828-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;barcode&quot;:&quot;BAR-1745546383828-2&quot;,&quot;category&quot;:&quot;Одежда&quot;,&quot;createdAt&quot;:&quot;2025-04-25T01:59:44.429Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-25T01:59:44.429Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e030a44bf689b9509cd&quot;,&quot;sku&quot;:&quot;SKU-101&quot;,&quot;productId&quot;:&quot;PROD-101&quot;,&quot;name&quot;:&quot;Смартфон Galaxy X&quot;,&quot;barcode&quot;:&quot;BARCODE-101&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:15:47.139Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:15:47.139Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e030a44bf689b9509d0&quot;,&quot;sku&quot;:&quot;SKU-102&quot;,&quot;productId&quot;:&quot;PROD-102&quot;,&quot;name&quot;:&quot;Беспроводные наушники Pro&quot;,&quot;barcode&quot;:&quot;BARCODE-102&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:15:47.145Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:15:47.145Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e030a44bf689b9509d3&quot;,&quot;sku&quot;:&quot;SKU-103&quot;,&quot;productId&quot;:&quot;PROD-103&quot;,&quot;name&quot;:&quot;Чехол для смартфона&quot;,&quot;barcode&quot;:&quot;BARCODE-103&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:15:47.151Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:15:47.151Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e220a44bf689b9509db&quot;,&quot;sku&quot;:&quot;SKU-301&quot;,&quot;productId&quot;:&quot;PROD-301&quot;,&quot;name&quot;:&quot;Умные часы SmartWatch&quot;,&quot;barcode&quot;:&quot;BARCODE-301&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:16:18.973Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:16:18.973Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e220a44bf689b9509de&quot;,&quot;sku&quot;:&quot;SKU-302&quot;,&quot;productId&quot;:&quot;PROD-302&quot;,&quot;name&quot;:&quot;Портативная колонка&quot;,&quot;barcode&quot;:&quot;BARCODE-302&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:16:18.978Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:16:18.978Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;680e2e220a44bf689b9509e1&quot;,&quot;sku&quot;:&quot;SKU-303&quot;,&quot;productId&quot;:&quot;PROD-303&quot;,&quot;name&quot;:&quot;Кабель USB-C&quot;,&quot;barcode&quot;:&quot;BARCODE-303&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-04-27T13:16:18.984Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T13:16:18.984Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e3ae50a44bf689b950a90&quot;,&quot;sku&quot;:&quot;PROD-001&quot;,&quot;productId&quot;:&quot;EXT-001&quot;,&quot;name&quot;:&quot;Смартфон XYZ&quot;,&quot;barcode&quot;:&quot;4607123456789&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:10:45.694Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:10:45.694Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e401a0a44bf689b950b8b&quot;,&quot;sku&quot;:&quot;PROD-002&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:32:58.539Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:32:58.539Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e40b50a44bf689b950bc4&quot;,&quot;sku&quot;:&quot;PROD-003&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:35:33.512Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:35:33.512Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e42d50a44bf689b950c0a&quot;,&quot;sku&quot;:&quot;PROD-004&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:44:37.114Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:44:37.114Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;680e43a20a44bf689b950c22&quot;,&quot;sku&quot;:&quot;PROD-005&quot;,&quot;productId&quot;:&quot;1111111111&quot;,&quot;name&quot;:&quot;Смартфон XYZQ&quot;,&quot;barcode&quot;:&quot;4607123456799&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-27T14:48:02.818Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-27T14:48:02.818Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102c200a44bf689b951217&quot;,&quot;sku&quot;:&quot;PROD-TEST-101&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:32:16.933Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:32:16.933Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102c490a44bf689b95121a&quot;,&quot;sku&quot;:&quot;PROD-TEST-201&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:32:57.812Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:32:57.812Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102fee0a44bf689b951238&quot;,&quot;sku&quot;:&quot;PROD-TEST-200&quot;,&quot;productId&quot;:&quot;EXT-TEST-201&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:48:30.571Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:48:30.571Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68102ffb0a44bf689b95123c&quot;,&quot;sku&quot;:&quot;PROD-TEST-210&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:48:43.299Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:48:43.299Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6810323c0a44bf689b9512ce&quot;,&quot;sku&quot;:&quot;PROD-TEST-221&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T01:58:20.373Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T01:58:20.373Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681032db0a44bf689b95135e&quot;,&quot;sku&quot;:&quot;PROD-TEST-222&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T02:00:59.421Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T02:00:59.421Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6810e3783a6da5ac74ae0a1f&quot;,&quot;sku&quot;:&quot;PROD-TEST-223&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T14:34:32.196Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T14:34:32.196Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;6810e3b23a6da5ac74ae0a22&quot;,&quot;sku&quot;:&quot;PROD-TEST-224&quot;,&quot;productId&quot;:&quot;EXT-TEST-210&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-04-29T14:35:30.002Z&quot;,&quot;updatedAt&quot;:&quot;2025-04-29T14:35:30.002Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68165ae03a6da5ac74ae0a97&quot;,&quot;sku&quot;:&quot;PROD-TEST-111&quot;,&quot;productId&quot;:&quot;EXT-TEST-111&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456111&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-03T18:05:20.961Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-03T18:05:20.962Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68165bd93a6da5ac74ae0a9b&quot;,&quot;sku&quot;:&quot;PROD-TEST-112&quot;,&quot;productId&quot;:&quot;EXT-TEST-112&quot;,&quot;name&quot;:&quot;Тестовый смартфон 2&quot;,&quot;barcode&quot;:&quot;4607123456112&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-03T18:09:29.140Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-03T18:09:29.140Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68167c233a6da5ac74ae0b23&quot;,&quot;sku&quot;:&quot;PROD-TEST-292&quot;,&quot;productId&quot;:&quot;EXT-TEST-292&quot;,&quot;name&quot;:&quot;Тестовый смартфон 3&quot;,&quot;barcode&quot;:&quot;4607123456292&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-03T20:27:15.941Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-03T20:27:15.941Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6818b4673a6da5ac74ae0c47&quot;,&quot;sku&quot;:&quot;PROD-NAST-001&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-05T12:51:51.859Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-05T12:51:51.859Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;6818b4d93a6da5ac74ae0c4c&quot;,&quot;sku&quot;:&quot;PROD-NAST-002&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-05T12:53:45.500Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-05T12:53:45.500Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:5,&quot;width&quot;:10,&quot;height&quot;:5,&quot;weight&quot;:2},&quot;_id&quot;:&quot;681b558f3a6da5ac74ae0d95&quot;,&quot;sku&quot;:&quot;122342343&quot;,&quot;productId&quot;:&quot;123213&quot;,&quot;name&quot;:&quot;тесмт&quot;,&quot;barcode&quot;:&quot;785335345345&quot;,&quot;category&quot;:&quot;&lt;string&gt;&quot;,&quot;createdAt&quot;:&quot;2025-05-07T12:43:59.013Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-07T12:43:59.013Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3a873a6da5ac74ae10c6&quot;,&quot;sku&quot;:&quot;PROD-TEST-0019&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:25:27.364Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:25:27.365Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3b663a6da5ac74ae10ca&quot;,&quot;sku&quot;:&quot;PROD-TEST-0020&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:29:10.446Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:29:10.446Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3c8c3a6da5ac74ae10ce&quot;,&quot;sku&quot;:&quot;PROD-TEST-0021&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:34:04.965Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:34:04.965Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;681e3d163a6da5ac74ae10d1&quot;,&quot;sku&quot;:&quot;PROD-TEST-0022&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-09T17:36:22.779Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-09T17:36:22.779Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68232dd23a6da5ac74ae1da2&quot;,&quot;sku&quot;:&quot;PROD-TEST-001-1&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-13T11:32:34.387Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-13T11:32:34.387Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68244f433a6da5ac74ae1db8&quot;,&quot;sku&quot;:&quot;PROD-TEST-16351&quot;,&quot;productId&quot;:&quot;EXT-TEST-001&quot;,&quot;name&quot;:&quot;Тестовый смартфон&quot;,&quot;barcode&quot;:&quot;4607123456000&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-05-14T08:07:31.216Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-14T08:07:31.216Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;682632c23a6da5ac74ae2662&quot;,&quot;sku&quot;:&quot;&lt;string&gt;&quot;,&quot;productId&quot;:&quot;&lt;string&gt;&quot;,&quot;name&quot;:&quot;&lt;string&gt;&quot;,&quot;barcode&quot;:&quot;&lt;string&gt;&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-15T18:30:26.583Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-15T18:30:26.583Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68375d4d3a6da5ac74aeda88&quot;,&quot;sku&quot;:&quot;PROD-1&quot;,&quot;productId&quot;:&quot;product-1&quot;,&quot;name&quot;:&quot;Pants&quot;,&quot;barcode&quot;:&quot;6543&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T19:00:29.964Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T19:00:29.964Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aeda97&quot;,&quot;sku&quot;:&quot;SKU-0000&quot;,&quot;productId&quot;:&quot;PID-svt3z29w&quot;,&quot;name&quot;:&quot;Product 1&quot;,&quot;barcode&quot;:&quot;1447850918232&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.692Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.693Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aeda9a&quot;,&quot;sku&quot;:&quot;SKU-0001&quot;,&quot;productId&quot;:&quot;PID-da0gwb7e&quot;,&quot;name&quot;:&quot;Product 2&quot;,&quot;barcode&quot;:&quot;5784560577284&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.697Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.697Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aeda9d&quot;,&quot;sku&quot;:&quot;SKU-0002&quot;,&quot;productId&quot;:&quot;PID-l8kd2gr4&quot;,&quot;name&quot;:&quot;Product 3&quot;,&quot;barcode&quot;:&quot;6718764287384&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.702Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.702Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aedaa0&quot;,&quot;sku&quot;:&quot;SKU-0003&quot;,&quot;productId&quot;:&quot;PID-ulaoz8xo&quot;,&quot;name&quot;:&quot;Product 4&quot;,&quot;barcode&quot;:&quot;6180675278812&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.707Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.707Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68376d793a6da5ac74aedaa3&quot;,&quot;sku&quot;:&quot;SKU-0004&quot;,&quot;productId&quot;:&quot;PID-vne76722&quot;,&quot;name&quot;:&quot;Product 5&quot;,&quot;barcode&quot;:&quot;4968801460878&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-05-28T20:09:29.712Z&quot;,&quot;updatedAt&quot;:&quot;2025-05-28T20:09:29.712Z&quot;,&quot;__v&quot;:0},{&quot;dimensions&quot;:{&quot;length&quot;:15,&quot;width&quot;:7.5,&quot;height&quot;:1.5,&quot;weight&quot;:0.2},&quot;_id&quot;:&quot;68868fc77f1c49a554578974&quot;,&quot;sku&quot;:&quot;PROD-00112&quot;,&quot;productId&quot;:&quot;EXT-001&quot;,&quot;name&quot;:&quot;Смартфон XYZ&quot;,&quot;barcode&quot;:&quot;4607123456789&quot;,&quot;category&quot;:&quot;Электроника&quot;,&quot;createdAt&quot;:&quot;2025-07-27T20:44:55.429Z&quot;,&quot;updatedAt&quot;:&quot;2025-07-27T20:44:55.429Z&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;68d30a1716d2df5b959f5d94&quot;,&quot;sku&quot;:&quot;PROD-000&quot;,&quot;productId&quot;:&quot;EXT-000&quot;,&quot;name&quot;:&quot;Test Item 0&quot;,&quot;barcode&quot;:&quot;4607123456780&quot;,&quot;category&quot;:&quot;Общая&quot;,&quot;createdAt&quot;:&quot;2025-09-23T20:59:03.436Z&quot;,&quot;updatedAt&quot;:&quot;2025-09-23T20:59:03.436Z&quot;,&quot;__v&quot;:0}]</code></pre>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-1eea2ec2-714b-4b14-8d40-e3490d9cdcb6">Copy to Clipboard</button>
-                                        </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Response Body for this request</h5>
                                 </div>
                             </div>
                             </div>
@@ -1227,45 +1231,7 @@ body.theme-light code {
                             <div class="card border-info">
                                 <div class="card-body">
                                 <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
-                                    <div class="table-responsive text-nowrap">
-                                        <table class="datatable table table-hover">
-                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
-                                            <tbody>
-                                                <tr >
-                                                    <td >Статус код 200</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr class="bg-light">
-                                                    <td><strong>Total</strong></td>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-center">0</td>
-                                                    <td class="text-center">0</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <div class="row d-none">
-                                    <div class="col-sm-12 mb-3">
-                                        <div class="card-deck">
-                                        <div class="card border-danger" style="width: 50rem;">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
-                                                <div class="table-responsive">
-                                                    <table class="table table-hover">
-                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Tests for this request</h5>
                                 </div>
                             </div>
                         </div>
@@ -1275,16 +1241,16 @@ body.theme-light code {
                 </div>
             </div>
             </div>
-            <div id="folder-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5" class="card-deck iteration-0">
+            <div id="folder-9edb6ea0-71d1-4789-aaa3-a005817755d5" class="card-deck iteration-0">
             <div class="row iteration-0">
                 <div class="col-sm-12 mb-3 iteration-0">
                 <div class="card iteration-0">
                     <div class="card-header  bg-success iteration-0">
-                        <a data-toggle="collapse" href="#" data-target="#collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5" aria-expanded="false" aria-controls="collapse" id="requests-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5" class="collapsed text-white z-block">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5" aria-expanded="false" aria-controls="collapse" id="requests-9edb6ea0-71d1-4789-aaa3-a005817755d5" class="collapsed text-white z-block">
                     Iteration: 1 - Создать новый заказ <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
                 </a>
                     </div>
-                    <div id="collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5" class="collapse" aria-labelledby="requests-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5">
+                    <div id="collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5" class="collapse" aria-labelledby="requests-9edb6ea0-71d1-4789-aaa3-a005817755d5">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 mb-3">
@@ -1411,15 +1377,15 @@ body.theme-light code {
                                 <div class="card border-info" style="width: 50rem;">
                                     <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
-                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 201 - Created</span><br>
-                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 193ms</span><br>
-                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 741B</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success">  - </span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 0ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 0B</span><br>
                                     <hr>
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
                                     <div>
                                         <div class="progress" style="height: 40px;">
-                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
-                                            <h5 style="padding-top:5px;"><strong>100 %</strong></h5>
+                                            <div class="progress-bar bg-success" style="width: 100%" role="progressbar">
+                                            <h5 class="text-uppercase text-white text-center" style="padding-top:5px;"><strong>No Tests for this request</strong></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -1451,10 +1417,6 @@ body.theme-light code {
                                                         <td class="text-wrap"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="text-nowrap">Authorization</td>
-                                                        <td class="text-wrap">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NjU2ODQ2MjgsImV4cCI6MTc2NTc3MTAyOH0.JskRto4YO1oZUSKh5ML8z18eh4d_r13Nw7eazFjxokA</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td class="text-nowrap">User-Agent</td>
                                                         <td class="text-wrap">PostmanRuntime/7.39.1</td>
                                                     </tr>
@@ -1464,7 +1426,7 @@ body.theme-light code {
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Postman-Token</td>
-                                                        <td class="text-wrap">4a78e639-8e72-4799-9ee7-c8650067483b</td>
+                                                        <td class="text-wrap">394e95d0-697c-44a5-8c23-6c6ed966f383</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Host</td>
@@ -1477,10 +1439,6 @@ body.theme-light code {
                                                     <tr>
                                                         <td class="text-nowrap">Connection</td>
                                                         <td class="text-wrap">keep-alive</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-nowrap">Content-Length</td>
-                                                        <td class="text-wrap">292</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1498,8 +1456,8 @@ body.theme-light code {
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
                                         <div class="dyn-height">
                                             <pre><code id="copyReqText-2" class="prettyPrint">{
-          &quot;orderNumber&quot;: &quot;ORD-1765684629241&quot;,
-          &quot;items&quot;: [{&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;quantity&quot;:2},{&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;quantity&quot;:2}],
+          &quot;orderNumber&quot;: &quot;ORD-1765771564841&quot;,
+          &quot;items&quot;: ,
           &quot;externalOrderId&quot;: &quot;123&quot;,
           &quot;customer&quot;: {&quot;name&quot;:&quot;Sergey&quot;,&quot;address&quot;:&quot;Cherepovets&quot;,&quot;phone&quot;:&quot;+79310000001&quot;,&quot;email&quot;:&quot;Qwerty@mail.ru&quot;},
           &quot;priority&quot;: &quot;1&quot;
@@ -1519,41 +1477,6 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-nowrap">Server</td>
-                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Date</td>
-                                                    <td class="text-wrap">Sun, 14 Dec 2025 03:57:09 GMT</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Type</td>
-                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Length</td>
-                                                    <td class="text-wrap">741</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Connection</td>
-                                                    <td class="text-wrap">keep-alive</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">X-Powered-By</td>
-                                                    <td class="text-wrap">Express</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">ETag</td>
-                                                    <td class="text-wrap">W/&quot;2e5-u9hBscEkzY4yGN9jdHRSwgmj7iw&quot;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -1565,12 +1488,7 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
-                                        <div class="dyn-height">
-                                                <pre><code id="copyText-113770ff-575e-49fa-a535-b7700c6c74f4" class="prettyPrint">{&quot;orderNumber&quot;:&quot;ORD-1765684629241&quot;,&quot;externalOrderId&quot;:&quot;123&quot;,&quot;customer&quot;:{&quot;name&quot;:&quot;Sergey&quot;,&quot;address&quot;:&quot;Cherepovets&quot;,&quot;phone&quot;:&quot;+79310000001&quot;,&quot;email&quot;:&quot;Qwerty@mail.ru&quot;},&quot;status&quot;:&quot;new&quot;,&quot;priority&quot;:1,&quot;items&quot;:[{&quot;productId&quot;:&quot;67fbba5e3b68860e539c02e3&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;pending&quot;,&quot;_id&quot;:&quot;693e3595b8dcd90d29c2679c&quot;},{&quot;productId&quot;:&quot;67fbba5f3b68860e539c02e6&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;pending&quot;,&quot;_id&quot;:&quot;693e3595b8dcd90d29c2679d&quot;}],&quot;_id&quot;:&quot;693e3595b8dcd90d29c2679b&quot;,&quot;createdAt&quot;:&quot;2025-12-14T03:57:09.345Z&quot;,&quot;updatedAt&quot;:&quot;2025-12-14T03:57:09.345Z&quot;,&quot;__v&quot;:0}</code></pre>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-113770ff-575e-49fa-a535-b7700c6c74f4">Copy to Clipboard</button>
-                                        </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Response Body for this request</h5>
                                 </div>
                             </div>
                             </div>
@@ -1580,45 +1498,7 @@ body.theme-light code {
                             <div class="card border-info">
                                 <div class="card-body">
                                 <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
-                                    <div class="table-responsive text-nowrap">
-                                        <table class="datatable table table-hover">
-                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
-                                            <tbody>
-                                                <tr >
-                                                    <td >Status code is 201</td>
-                                                    <td class="text-center bg-success">1</td>
-                                                    <td class="text-center ">0</td>
-                                                    <td class="text-center ">0</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr class="bg-light">
-                                                    <td><strong>Total</strong></td>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-center">0</td>
-                                                    <td class="text-center">0</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <div class="row d-none">
-                                    <div class="col-sm-12 mb-3">
-                                        <div class="card-deck">
-                                        <div class="card border-danger" style="width: 50rem;">
-                                            <div class="card-body">
-                                                <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failure</h5>
-                                                <div class="table-responsive">
-                                                    <table class="table table-hover">
-                                                    <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Tests for this request</h5>
                                 </div>
                             </div>
                         </div>
@@ -1628,16 +1508,16 @@ body.theme-light code {
                 </div>
             </div>
             </div>
-            <div id="folder-4d869e51-abd2-44a8-a604-bcfb30bf0c09" class="card-deck iteration-0">
+            <div id="folder-04f8e3ac-fda0-478b-943b-5cdd9413bd2a" class="card-deck iteration-0">
             <div class="row iteration-0">
                 <div class="col-sm-12 mb-3 iteration-0">
                 <div class="card iteration-0">
                     <div class="card-header  bg-success iteration-0">
-                        <a data-toggle="collapse" href="#" data-target="#collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09" aria-expanded="false" aria-controls="collapse" id="requests-4d869e51-abd2-44a8-a604-bcfb30bf0c09" class="collapsed text-white z-block">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a" aria-expanded="false" aria-controls="collapse" id="requests-04f8e3ac-fda0-478b-943b-5cdd9413bd2a" class="collapsed text-white z-block">
                     Iteration: 1 - Резервировать товары для заказа <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
                 </a>
                     </div>
-                    <div id="collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09" class="collapse" aria-labelledby="requests-4d869e51-abd2-44a8-a604-bcfb30bf0c09">
+                    <div id="collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a" class="collapse" aria-labelledby="requests-04f8e3ac-fda0-478b-943b-5cdd9413bd2a">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 mb-3">
@@ -1759,15 +1639,15 @@ body.theme-light code {
                                     <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
                                     <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> POST</span><br>
-                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://sklad.testerhub.ru/wms/v1/orders/693e3595b8dcd90d29c2679b/reserve" target="_blank">https://sklad.testerhub.ru/wms/v1/orders/693e3595b8dcd90d29c2679b/reserve</a><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://sklad.testerhub.ru/wms/v1/orders//reserve" target="_blank">https://sklad.testerhub.ru/wms/v1/orders//reserve</a><br>
                                     </div>
                                 </div>
                                 <div class="card border-info" style="width: 50rem;">
                                     <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
-                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
-                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 194ms</span><br>
-                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 968B</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success">  - </span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 0ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 0B</span><br>
                                     <hr>
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
                                     <div>
@@ -1801,10 +1681,6 @@ body.theme-light code {
                                                         <td class="text-wrap"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="text-nowrap">Authorization</td>
-                                                        <td class="text-wrap">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODBjYWExNzBhNDRiZjY4OWI5NTA3OGYiLCJ1c2VybmFtZSI6IlNlcmdleSIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NjU2ODQ2MjgsImV4cCI6MTc2NTc3MTAyOH0.JskRto4YO1oZUSKh5ML8z18eh4d_r13Nw7eazFjxokA</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td class="text-nowrap">User-Agent</td>
                                                         <td class="text-wrap">PostmanRuntime/7.39.1</td>
                                                     </tr>
@@ -1814,7 +1690,7 @@ body.theme-light code {
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Postman-Token</td>
-                                                        <td class="text-wrap">26f4ab87-739f-475d-bc0c-d397d9730390</td>
+                                                        <td class="text-wrap">f45ac917-adf7-4345-975e-c2cd6b2e357b</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-nowrap">Host</td>
@@ -1827,10 +1703,6 @@ body.theme-light code {
                                                     <tr>
                                                         <td class="text-nowrap">Connection</td>
                                                         <td class="text-wrap">keep-alive</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-nowrap">Content-Length</td>
-                                                        <td class="text-wrap">0</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1846,41 +1718,6 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                        <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-nowrap">Server</td>
-                                                    <td class="text-wrap">nginx/1.18.0 (Ubuntu)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Date</td>
-                                                    <td class="text-wrap">Sun, 14 Dec 2025 03:57:09 GMT</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Type</td>
-                                                    <td class="text-wrap">application/json; charset&#x3D;utf-8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Content-Length</td>
-                                                    <td class="text-wrap">968</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">Connection</td>
-                                                    <td class="text-wrap">keep-alive</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">X-Powered-By</td>
-                                                    <td class="text-wrap">Express</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">ETag</td>
-                                                    <td class="text-wrap">W/&quot;3c8-PsZYTV11DxnyJ82GwsaVmEM7AgY&quot;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -1892,12 +1729,7 @@ body.theme-light code {
                             <div class="card border-info" style="width: 50rem;">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
-                                        <div class="dyn-height">
-                                                <pre><code id="copyText-c5f9be5f-b37f-4c31-981b-ceb659e21b3a" class="prettyPrint">{&quot;message&quot;:&quot;Items reserved successfully&quot;,&quot;order&quot;:{&quot;customer&quot;:{&quot;name&quot;:&quot;Sergey&quot;,&quot;address&quot;:&quot;Cherepovets&quot;,&quot;phone&quot;:&quot;+79310000001&quot;,&quot;email&quot;:&quot;Qwerty@mail.ru&quot;},&quot;_id&quot;:&quot;693e3595b8dcd90d29c2679b&quot;,&quot;orderNumber&quot;:&quot;ORD-1765684629241&quot;,&quot;externalOrderId&quot;:&quot;123&quot;,&quot;status&quot;:&quot;processing&quot;,&quot;priority&quot;:1,&quot;items&quot;:[{&quot;productId&quot;:&quot;67fbba5e3b68860e539c02e3&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 1&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;reserved&quot;,&quot;_id&quot;:&quot;693e3595b8dcd90d29c2679c&quot;},{&quot;productId&quot;:&quot;67fbba5f3b68860e539c02e6&quot;,&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;name&quot;:&quot;Тестовый товар для заказа 2&quot;,&quot;quantity&quot;:2,&quot;pickedQuantity&quot;:0,&quot;status&quot;:&quot;reserved&quot;,&quot;_id&quot;:&quot;693e3595b8dcd90d29c2679d&quot;}],&quot;createdAt&quot;:&quot;2025-12-14T03:57:09.345Z&quot;,&quot;updatedAt&quot;:&quot;2025-12-14T03:57:09.564Z&quot;,&quot;__v&quot;:0},&quot;items&quot;:[{&quot;sku&quot;:&quot;SKU-1744550494284-1&quot;,&quot;required&quot;:2,&quot;available&quot;:126,&quot;status&quot;:&quot;reserved&quot;},{&quot;sku&quot;:&quot;SKU-1744550494284-2&quot;,&quot;required&quot;:2,&quot;available&quot;:156,&quot;status&quot;:&quot;reserved&quot;}]}</code></pre>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-c5f9be5f-b37f-4c31-981b-ceb659e21b3a">Copy to Clipboard</button>
-                                        </div>
+                                    <h5 class="alert alert-success text-uppercase text-center">No Response Body for this request</h5>
                                 </div>
                             </div>
                             </div>
@@ -2043,41 +1875,41 @@ $('#openAllRequests').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
 switch (clickCount){
     case 1:
-            $('#requests-082fae29-7885-4c49-8797-f814f6960be0').removeClass('collapsed')
-            $('#collapse-082fae29-7885-4c49-8797-f814f6960be0').removeClass('collapsed')
-            $('#requests-082fae29-7885-4c49-8797-f814f6960be0').addClass('show')
-            $('#collapse-082fae29-7885-4c49-8797-f814f6960be0').addClass('show')
-            $('#requests-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('collapsed')
-            $('#collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('collapsed')
-            $('#requests-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('show')
-            $('#collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('show')
-            $('#requests-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('collapsed')
-            $('#collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('collapsed')
-            $('#requests-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('show')
-            $('#collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('show')
-            $('#requests-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('collapsed')
-            $('#collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('collapsed')
-            $('#requests-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('show')
-            $('#collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('show')
+            $('#requests-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('collapsed')
+            $('#collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('collapsed')
+            $('#requests-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('show')
+            $('#collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('show')
+            $('#requests-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('collapsed')
+            $('#collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('collapsed')
+            $('#requests-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('show')
+            $('#collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('show')
+            $('#requests-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('collapsed')
+            $('#collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('collapsed')
+            $('#requests-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('show')
+            $('#collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('show')
+            $('#requests-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('collapsed')
+            $('#collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('collapsed')
+            $('#requests-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('show')
+            $('#collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('show')
         $('#openAllRequests').html("Collapse Requests");
         break;
     case 2:
-            $('#requests-082fae29-7885-4c49-8797-f814f6960be0').addClass('collapsed')
-            $('#collapse-082fae29-7885-4c49-8797-f814f6960be0').addClass('collapsed')
-            $('#requests-082fae29-7885-4c49-8797-f814f6960be0').removeClass('show')
-            $('#collapse-082fae29-7885-4c49-8797-f814f6960be0').removeClass('show')
-            $('#requests-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('collapsed')
-            $('#collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('collapsed')
-            $('#requests-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('show')
-            $('#collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('show')
-            $('#requests-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('collapsed')
-            $('#collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('collapsed')
-            $('#requests-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('show')
-            $('#collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('show')
-            $('#requests-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('collapsed')
-            $('#collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('collapsed')
-            $('#requests-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('show')
-            $('#collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('show')
+            $('#requests-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('collapsed')
+            $('#collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('collapsed')
+            $('#requests-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('show')
+            $('#collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('show')
+            $('#requests-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('collapsed')
+            $('#collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('collapsed')
+            $('#requests-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('show')
+            $('#collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('show')
+            $('#requests-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('collapsed')
+            $('#collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('collapsed')
+            $('#requests-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('show')
+            $('#collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('show')
+            $('#requests-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('collapsed')
+            $('#collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('collapsed')
+            $('#requests-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('show')
+            $('#collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('show')
         $('#openAllRequests').html("Expand Requests");
         break;
 }
@@ -2093,41 +1925,41 @@ $('#openAllSkipped').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
 switch (clickCount){
     case 1:
-            $('#skipped-082fae29-7885-4c49-8797-f814f6960be0').removeClass('collapsed')
-            $('#skipped-collapse-082fae29-7885-4c49-8797-f814f6960be0').removeClass('collapsed')
-            $('#skipped-082fae29-7885-4c49-8797-f814f6960be0').addClass('show')
-            $('#skipped-collapse-082fae29-7885-4c49-8797-f814f6960be0').addClass('show')
-            $('#skipped-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('collapsed')
-            $('#skipped-collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('collapsed')
-            $('#skipped-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('show')
-            $('#skipped-collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('show')
-            $('#skipped-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('collapsed')
-            $('#skipped-collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('collapsed')
-            $('#skipped-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('show')
-            $('#skipped-collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('show')
-            $('#skipped-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('collapsed')
-            $('#skipped-collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('collapsed')
-            $('#skipped-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('show')
-            $('#skipped-collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('show')
+            $('#skipped-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('collapsed')
+            $('#skipped-collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('collapsed')
+            $('#skipped-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('show')
+            $('#skipped-collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('show')
+            $('#skipped-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('collapsed')
+            $('#skipped-collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('collapsed')
+            $('#skipped-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('show')
+            $('#skipped-collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('show')
+            $('#skipped-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('collapsed')
+            $('#skipped-collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('collapsed')
+            $('#skipped-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('show')
+            $('#skipped-collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('show')
+            $('#skipped-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('collapsed')
+            $('#skipped-collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('collapsed')
+            $('#skipped-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('show')
+            $('#skipped-collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('show')
         $('#openAllSkipped').html("Collapse All Skipped Tests");
         break;
     case 2:
-            $('#skipped-082fae29-7885-4c49-8797-f814f6960be0').addClass('collapsed')
-            $('#skipped-collapse-082fae29-7885-4c49-8797-f814f6960be0').addClass('collapsed')
-            $('#skipped-082fae29-7885-4c49-8797-f814f6960be0').removeClass('show')
-            $('#skipped-collapse-082fae29-7885-4c49-8797-f814f6960be0').removeClass('show')
-            $('#skipped-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('collapsed')
-            $('#skipped-collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').addClass('collapsed')
-            $('#skipped-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('show')
-            $('#skipped-collapse-a4b35e19-0f5b-4b84-821b-2e1cfdec3135').removeClass('show')
-            $('#skipped-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('collapsed')
-            $('#skipped-collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').addClass('collapsed')
-            $('#skipped-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('show')
-            $('#skipped-collapse-f0e9db8d-7f26-46cb-8620-5b0a2287fbf5').removeClass('show')
-            $('#skipped-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('collapsed')
-            $('#skipped-collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').addClass('collapsed')
-            $('#skipped-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('show')
-            $('#skipped-collapse-4d869e51-abd2-44a8-a604-bcfb30bf0c09').removeClass('show')
+            $('#skipped-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('collapsed')
+            $('#skipped-collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').addClass('collapsed')
+            $('#skipped-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('show')
+            $('#skipped-collapse-72523ecb-59a2-4995-9c0e-a815bbe22937').removeClass('show')
+            $('#skipped-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('collapsed')
+            $('#skipped-collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').addClass('collapsed')
+            $('#skipped-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('show')
+            $('#skipped-collapse-f774cf16-0c89-43a1-ae92-cb1b58a69c45').removeClass('show')
+            $('#skipped-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('collapsed')
+            $('#skipped-collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').addClass('collapsed')
+            $('#skipped-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('show')
+            $('#skipped-collapse-9edb6ea0-71d1-4789-aaa3-a005817755d5').removeClass('show')
+            $('#skipped-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('collapsed')
+            $('#skipped-collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').addClass('collapsed')
+            $('#skipped-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('show')
+            $('#skipped-collapse-04f8e3ac-fda0-478b-943b-5cdd9413bd2a').removeClass('show')
         $('#openAllSkipped').html("Expand All Skipped Tests");
         break;
 }
@@ -2145,9 +1977,93 @@ let failedItemContent
 let failedItemHeading
 switch (clickCount){
     case 1:
+            failedItemHeading = $('#fails-d30f334a-52dc-4a46-9722-0b808fb877f4');
+            failedItemContent = $("#fails-collapse-d30f334a-52dc-4a46-9722-0b808fb877f4");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
+            failedItemHeading = $('#fails-af7bb356-ed97-4cf8-8781-2276e6c47427');
+            failedItemContent = $("#fails-collapse-af7bb356-ed97-4cf8-8781-2276e6c47427");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
+            failedItemHeading = $('#fails-6d271927-f5d2-4b50-85a8-23a719a75abb');
+            failedItemContent = $("#fails-collapse-6d271927-f5d2-4b50-85a8-23a719a75abb");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
+            failedItemHeading = $('#fails-3ce791e6-398f-4c21-8453-fc58f980cc09');
+            failedItemContent = $("#fails-collapse-3ce791e6-398f-4c21-8453-fc58f980cc09");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
+            failedItemHeading = $('#fails-cc437d27-cab0-4dab-9ed2-e7dbaf48a792');
+            failedItemContent = $("#fails-collapse-cc437d27-cab0-4dab-9ed2-e7dbaf48a792");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
+            failedItemHeading = $('#fails-182e4de9-c915-4e0c-b57c-42dcf9aeb620');
+            failedItemContent = $("#fails-collapse-182e4de9-c915-4e0c-b57c-42dcf9aeb620");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
+            failedItemHeading = $('#fails-4143752d-a739-4be5-9f55-e25c41cf7baf');
+            failedItemContent = $("#fails-collapse-4143752d-a739-4be5-9f55-e25c41cf7baf");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
         $('#openAllFailed').html("Collapse All Failed Tests");
         break;
     case 2:
+            failedItemHeading = $('#fails-d30f334a-52dc-4a46-9722-0b808fb877f4');
+            failedItemContent = $("#fails-collapse-d30f334a-52dc-4a46-9722-0b808fb877f4");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
+            failedItemHeading = $('#fails-af7bb356-ed97-4cf8-8781-2276e6c47427');
+            failedItemContent = $("#fails-collapse-af7bb356-ed97-4cf8-8781-2276e6c47427");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
+            failedItemHeading = $('#fails-6d271927-f5d2-4b50-85a8-23a719a75abb');
+            failedItemContent = $("#fails-collapse-6d271927-f5d2-4b50-85a8-23a719a75abb");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
+            failedItemHeading = $('#fails-3ce791e6-398f-4c21-8453-fc58f980cc09');
+            failedItemContent = $("#fails-collapse-3ce791e6-398f-4c21-8453-fc58f980cc09");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
+            failedItemHeading = $('#fails-cc437d27-cab0-4dab-9ed2-e7dbaf48a792');
+            failedItemContent = $("#fails-collapse-cc437d27-cab0-4dab-9ed2-e7dbaf48a792");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
+            failedItemHeading = $('#fails-182e4de9-c915-4e0c-b57c-42dcf9aeb620');
+            failedItemContent = $("#fails-collapse-182e4de9-c915-4e0c-b57c-42dcf9aeb620");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
+            failedItemHeading = $('#fails-4143752d-a739-4be5-9f55-e25c41cf7baf');
+            failedItemContent = $("#fails-collapse-4143752d-a739-4be5-9f55-e25c41cf7baf");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
         $('#openAllFailed').html("Expand All Failed Tests");
         break;
 }
@@ -2272,6 +2188,8 @@ function scrollFunction() {
     document.getElementById("openAllRequests").style.display = "none";
 
 
+    document.getElementById("showOnlyFailures").style.display = "none";
+    document.getElementById("openAllFailed").style.display = "none";
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
@@ -2279,6 +2197,8 @@ function scrollFunction() {
     document.getElementById("openAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
 
+    document.getElementById("showOnlyFailures").style.display = "block";
+    document.getElementById("openAllFailed").style.display = "block";
   }
 }
 
